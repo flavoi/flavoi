@@ -53,7 +53,7 @@ class Contact(Feature):
     label = models.CharField(max_length=30)
     link = models.URLField()
     icon = models.SlugField(max_length=30)
-    
+    primary = models.BooleanField(default=True)
     def __unicode__(self):
         return u'%s' % (self.label)
     

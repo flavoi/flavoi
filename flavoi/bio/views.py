@@ -33,5 +33,9 @@ class InspirationsView(HomeView):
 # How to find me
 class ContactsView(HomeView):
     template_name = "contacts.html"
-    contacts = Contact.objects.filter(bio__active=True)
-    context = { 'contacts': contacts }
+    primary_contacts = Contact.objects.filter(bio__active=True).filter(primary=True)
+    secondary_contacts = Contact.objects.filter(bio__active=True).filter(primary=False)
+    context = { 
+        'primary_contacts': primary_contacts,
+        'secondary_contacts': secondary_contacts,
+    }

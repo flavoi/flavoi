@@ -11,15 +11,15 @@
     <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
       <h3>How to find me</h3>
       <ul>
-        {% for cont in contacts %}
-          <li> On <a title="{{ cont.icon }}" href="{{ cont.link }}"><i class="icon-{{ cont.icon }}-sign"></i> {{ cont.label|title }}</a></li>
+        {% for prim in primary_contacts %}
+          <li> On <a title="{{ prim.icon }}" href="{{ prim.link }}"><i class="icon-{{ prim.icon }}-sign"></i> {{ prim.label|title }}</a></li>
         {% endfor %}
       </ul>
       <h3>Or eventually...</h3>
       <ul>
-        <li> Fork any of my <a title="github" href="https://github.com/flavoi">GitHub</a> projects </li>
-        <li> Answer me on <a title="stack overflow" href="http://stackoverflow.com/users/552339/flavio-marcato">Stack exchange</a></li>
-        <li> Maybe check some <a title="slideshare" href="http://www.slideshare.net/WingRunner">Slideshare</a> presentations </li>
+        {% for seco in secondary_contacts %}
+          <li> {{ seco.description|capfirst }} <a title="{{ seco.icon }}" href="{{ seco.link }}">{{ seco.label|title }}</a></li>
+        {% endfor %}
         <li> Say hello by <a title="email" href="mailto:{{ profile.email }}">email</a>!</li>
       </ul>
     </section><!-- .post-content end -->

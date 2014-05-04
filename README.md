@@ -7,7 +7,7 @@ The web site that pretends to be a web app.
 Features that will be included:
 
 - [x] the site name
-- [ ] profile and bio
+- [x] profile and bio
 - [ ] my current goal and progression
 - [ ] the most up-to-date curriculum vitae
 - [ ] achievements earned so far
