@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block inspirations %}current{% endblock %}
+
+{% block content %}
+	<article class="post" role="article" itemscope itemtype="http://schema.org/BlogPosting"><!-- .post start -->
+  	<header><!-- header start -->
+  		<h2 class="page-title" itemprop="headline">Inspirations</h2>
+  	</header><!-- header end -->
+  	<section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
+    {% for ins in inspirations %}
+  	 <blockquote>
+  	   {{ ins.quote }}
+  		<footer>-- {{ ins.author }}</footer>
+  	</blockquote>
+  	{% endfor %}
+  	</section><!-- .post-content end -->
+	</article><!-- .post end -->
+{% endblock %}

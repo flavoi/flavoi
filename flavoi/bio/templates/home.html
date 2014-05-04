@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block home %}current{% endblock %}
+
+{% block content %}
+<article class="post" role="article" itemscope itemtype="http://schema.org/BlogPosting"><!-- .post start -->
+    <header><!-- header start -->
+      <h2 class="page-title" itemprop="headline">Home</h2>
+    </header><!-- header end -->
+    
+    <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
+      <p style="text-align: center;">
+        <img src="{{ profile.picture.url }}" alt="flavoi profile picture" width="940" height="390" title=""/>
+      </p>
+      {% autoescape off %}
+      <p>
+        {{ profile.content }}
+      </p>
+      {% endautoescape %}
+      <p>
+        <i class="icon-star"></i> </a>Current job objective: </strong> <a href="{% url 'achievements' %}">{{ current_goal.title }}</a>.
+      </p>
+      <p>
+        {{ profile.activities|safe }} 
+      </p>
+      <p>
+       <strong><i class="icon-star"></i> Favourite hobby:</strong> the role playing. <a target="_blank" title="pathfinder" href="http://paizo.com/pathfinder">Pathfinder</a>, for the win.
+      </p>
+      <hr/>
+      <h4>Professional skills?</h4>
+      <a target="_blank" class="button" title="my curriculum vitae" href="{{ profile.cv.url }}">Download my Curriculum Vitae</a>
+    </section><!-- .post-content end -->
+  </article><!-- .post end -->
+{% endblock %}
