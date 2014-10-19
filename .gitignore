@@ -14,7 +14,8 @@ build
 
 # SQLite3 database files
 *.db
-migrations
+flavoi/bio/migrations
+flavoi/goal/migrations
 
 # Logs
 *.log
