@@ -3,19 +3,20 @@ flavoi/settings/local.py
 flavoi/settings/production.py
 flavoi/flavoi.db
 
-# Python bytecode:
+# Python bytecode
 *.py[co]
 
-# Packaging files:
+# Packaging files
 *.egg*
 
-# Sphinx docs:
+# Sphinx docs
 build
 
-# SQLite3 database files:
+# SQLite3 database files
 *.db
+migrations
 
-# Logs:
+# Logs
 *.log
 
 # Eclipse
