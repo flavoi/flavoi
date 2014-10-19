@@ -21,20 +21,24 @@ from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = getenv('SECRET_KEY')
+# Configuration vars
+# SECURITY WARNING: keep the secret keys used in production secret!
 
-# My current username
+SECRET_KEY = getenv('FLAVOI_KEY')
+
 CURRENT_PROFILE = getenv('CURRENT_PROFILE')
 
+ALLOWED_HOSTS = []
+
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+# Applications
+# https://docs.djangoproject.com/en/1.7/ref/applications/
 
-# Application definition
 DJANGO_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -46,7 +50,6 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     'storages',
-    'south',
 )
 
 LOCAL_APPS = (
@@ -69,7 +72,6 @@ ROOT_URLCONF = 'flavoi.urls'
 
 WSGI_APPLICATION = 'flavoi.wsgi.application'
 
-# Supporto suit-admin
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
     'bio.context.copyright',
@@ -100,6 +102,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 # Amazon S3 support
+# http://aws.amazon.com
+
 AWS_ACCESS_KEY_ID = getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = getenv('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = getenv('AWS_STORAGE_BUCKET_NAME')
