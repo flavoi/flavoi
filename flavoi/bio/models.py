@@ -49,12 +49,14 @@ class Feature(models.Model):
 class Contact(Feature):
     """
     A model that contains a bunch of helpful links.
+    If primary it will be displayed in the first section of the webpage.
     """
     description = models.TextField(max_length=255, blank=True)
     label = models.CharField(max_length=30)
     link = models.URLField()
     icon = models.SlugField(max_length=30)
     primary = models.BooleanField(default=True)
+
     def __unicode__(self):
         return u'%s' % (self.label)
     

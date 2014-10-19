@@ -17,7 +17,7 @@ class GreetingView(View):
 # Render the homepage
 class HomeView(View):
     template_name = "home.html"
-    current_goal = Goal.objects.all().current()
+    current_goal = Goal.objects.current()
     context = {
         'current_goal': current_goal,
     }

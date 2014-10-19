@@ -8,6 +8,29 @@
         <h2 class="page-title" itemprop="headline">Achievements</h2>
     </header><!-- header end -->
     <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
+        {% for goal in published_goals %}
+        <h3>
+            {{ goal.title }}
+        </h3>
+        <p>
+            <strong>Created:</strong> {{ goal.created }} - <strong>Modified:</strong> {{ goal.modified }}
+        </p>
+        {% if goal.picture %}
+            <div class="captionImage left" style="width: 480px;">
+                <img class="left" src="{{ goal.picture.url }}" alt="{{ goal.title }}" width="480" height="319" title=""/>
+                <p class="caption">
+                    My first goal
+                </p>
+            </div>
+        {% endif %}
+        <p>
+            {{ goal.description }}
+        </p>
+        <p>
+            {{ goal.percentage }}% <progress value="{{ goal.percentage }}" max="100">{{ goal.percentage }}</progress>
+        </p>
+        <hr/>
+        {% endfor %}
     </section><!-- .post-content end -->
     </article><!-- .post end -->
 {% endblock %}
