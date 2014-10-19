@@ -6,10 +6,11 @@ from django.db.models.query import QuerySet
 from bio.models import TimeStampedModel
 
 
-class GoalManager(models.Manager):
+class GoalManager(models.QuerySet):
     
-    def get_query_set(self):
-        return self.model.QuerySet(self.model)
+    # Get the latest goal, it will be shown at the homepage
+    def current(self):
+        return self.filter(published=True, percentage__lt=100).latest('modified')
     
 
 class Goal(TimeStampedModel):
@@ -26,14 +27,7 @@ class Goal(TimeStampedModel):
         ]
      )
     
-    objects = GoalManager()
-
-    class QuerySet(QuerySet):
-        def current(self):
-            return self.filter(
-                published=True, 
-                percentage__lt=100,
-             ).latest('modified')
+    objects = GoalManager.as_manager()
 
     def __unicode__(self):
         return u'%s' % self.title

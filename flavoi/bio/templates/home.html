@@ -7,7 +7,6 @@
     <header><!-- header start -->
       <h2 class="page-title" itemprop="headline">Home</h2>
     </header><!-- header end -->
-    
     <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
       <p style="text-align: center;">
         <img src="{{ profile.picture.url }}" alt="flavoi profile picture" width="940" height="390" title=""/>
@@ -18,7 +17,7 @@
       </p>
       {% endautoescape %}
       <p>
-        <i class="icon-star"></i> </a>Latest job goal: </strong> <a href="{% url 'achievements' %}">{{ current_goal.title }}</a>.
+        <strong><i class="icon-star"></i> </a>Latest job goal: </strong> <a href="{% url 'achievements' %}">{{ current_goal.title }}</a>.
       </p>
       <p>
         {{ profile.activities|safe }} 
