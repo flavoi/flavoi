@@ -11,16 +11,14 @@
       <p style="text-align: center;">
         <img src="{{ profile.picture.url }}" alt="flavoi profile picture" width="940" height="390" title=""/>
       </p>
-      {% autoescape off %}
       <p>
-        {{ profile.content }}
+        {{ profile.job_content|safe }}
       </p>
-      {% endautoescape %}
       <p>
         <strong><i class="icon-star"></i> </a>Latest job goal: </strong> <a href="{% url 'achievements' %}">{{ current_goal.title }}</a>.
       </p>
       <p>
-        {{ profile.activities|safe }} 
+        {{ profile.hobby_content|safe }} 
       </p>
       <p>
        <strong><i class="icon-star"></i> Favourite hobby:</strong> the role playing. <a target="_blank" title="pathfinder" href="http://paizo.com/pathfinder">Pathfinder</a>, for the win.

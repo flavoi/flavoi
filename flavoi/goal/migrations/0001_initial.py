@@ -1,38 +1,29 @@
 # -*- coding: utf-8 -*-
-from south.utils import datetime_utils as datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+import django.core.validators
 
 
-class Migration(SchemaMigration):
+class Migration(migrations.Migration):
 
-    def forwards(self, orm):
-        # Adding model 'Goal'
-        db.create_table(u'goal_goal', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
-            ('modified', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=30)),
-            ('completed', self.gf('django.db.models.fields.BooleanField')(default=False)),
-        ))
-        db.send_create_signal(u'goal', ['Goal'])
+    dependencies = [
+    ]
 
-
-    def backwards(self, orm):
-        # Deleting model 'Goal'
-        db.delete_table(u'goal_goal')
-
-
-    models = {
-        u'goal.goal': {
-            'Meta': {'object_name': 'Goal'},
-            'completed': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'modified': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '30'})
-        }
-    }
-
-    complete_apps = ['goal']
+    operations = [
+        migrations.CreateModel(
+            name='Goal',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('created', models.DateTimeField(auto_now_add=True)),
+                ('modified', models.DateTimeField(auto_now=True)),
+                ('title', models.CharField(max_length=60)),
+                ('published', models.BooleanField(default=False)),
+                ('percentage', models.PositiveIntegerField(default=1, validators=[django.core.validators.MaxValueValidator(100)])),
+            ],
+            options={
+                'abstract': False,
+            },
+            bases=(models.Model,),
+        ),
+    ]

@@ -1,4 +1,3 @@
-
 from django.conf.urls import patterns, include, url
 from .views import GreetingView, HomeView, InspirationsView, ContactsView
 
