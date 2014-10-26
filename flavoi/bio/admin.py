@@ -1,8 +1,9 @@
 from django.contrib import admin
 
+from flavoi.admin import RichModelAdmin
 from bio.models import Bio, Contact, Inspiration
 
-class BioAdmin(admin.ModelAdmin):
+class BioAdmin(RichModelAdmin):
     list_display = ['title', 'subtitle', 'active']
 
 class ContactAdmin(admin.ModelAdmin):
