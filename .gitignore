@@ -1,6 +1,4 @@
 # Secrets
-flavoi/settings/local.py
-flavoi/settings/production.py
 flavoi/flavoi.db
 
 # Python bytecode
