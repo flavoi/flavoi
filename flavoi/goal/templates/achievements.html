@@ -10,6 +10,7 @@
     <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
         {% for goal in published_goals %}
         <h3>
+            {% ifequal goal.percentage 100 %}<i class="fa fa-trophy"></i>{% endifequal %}
             {{ goal.title }}
         </h3>
         <p>

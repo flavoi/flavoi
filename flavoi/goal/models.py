@@ -9,13 +9,9 @@ from bio.models import TimeStampedModel
 
 class GoalManager(models.QuerySet):
     
-    # Get the most recent goal giving priority to works in progress
+    # Get the most recent goal
     def current(self):
-        current_goal = None
-        try:
-            current_goal = self.filter(published=True, percentage__lt=100).latest('modified')
-        except:
-            curret_goal = self.filter(published=True).latest('modified')
+        current_goal = self.filter(published=True).latest('modified')
         return current_goal
 
     # Get the list of published goals from the most recent to the least 
