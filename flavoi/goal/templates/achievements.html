@@ -13,7 +13,7 @@
             {{ goal.title }}
         </h3>
         <p>
-            <strong>Created:</strong> {{ goal.created }} | <strong>Modified:</strong> {{ goal.modified }}
+            <strong>Created:</strong> {{ goal.created }} | <strong>Updated:</strong> {{ goal.modified }}
         </p>
         {% if goal.picture %}
             <div class="captionImage left" style="width: 480px;">
@@ -23,9 +23,9 @@
                 </p>
             </div>
         {% endif %}
-        <p>
-            {{ goal.description }}
-        </p>
+        
+        {{ goal.description|safe }}
+        
         <p>
             {{ goal.percentage }}% <progress value="{{ goal.percentage }}" max="100">{{ goal.percentage }}</progress>
         </p>
