@@ -18,6 +18,10 @@ class GoalManager(models.QuerySet):
             curret_goal = self.filter(published=True).latest('modified')
         return current_goal
 
+    # Get the list of published goals from the most recent to the least 
+    def history(self):
+        goals = self.filter(published=True).order_by('-modified')
+        return goals
 
 class Goal(TimeStampedModel):
     """

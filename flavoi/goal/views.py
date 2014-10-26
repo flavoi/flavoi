@@ -7,7 +7,7 @@ from .models import Goal
 # My job goals reside here
 class AchievementsView(HomeView):
     template_name = "achievements.html"
-    published_goals = Goal.objects.filter(published=True).order_by('modified')
+    published_goals = Goal.objects.history()
     context = {
         'published_goals': published_goals,
     }
