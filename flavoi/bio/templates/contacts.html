@@ -12,7 +12,7 @@
       <h3>How to find me</h3>
       <ul>
         {% for prim in primary_contacts %}
-          <li> On <a title="{{ prim.icon }}" href="{{ prim.link }}"><i class="icon-{{ prim.icon }}-sign"></i> {{ prim.label|title }}</a></li>
+          <li> On <a title="{{ prim.icon }}" href="{{ prim.link }}"><i class="fa fa-{{ prim.icon }}"></i> {{ prim.label|title }}</a></li>
         {% endfor %}
       </ul>
       <h3>Or eventually...</h3>

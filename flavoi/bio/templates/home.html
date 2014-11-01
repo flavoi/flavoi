@@ -7,24 +7,21 @@
     <header><!-- header start -->
       <h2 class="page-title" itemprop="headline">Home</h2>
     </header><!-- header end -->
-    
     <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
       <p style="text-align: center;">
         <img src="{{ profile.picture.url }}" alt="flavoi profile picture" width="940" height="390" title=""/>
       </p>
-      {% autoescape off %}
       <p>
-        {{ profile.content }}
-      </p>
-      {% endautoescape %}
-      <p>
-        <i class="icon-star"></i> </a>Latest job goal: </strong> <a href="{% url 'achievements' %}">{{ current_goal.title }}</a>.
+        {{ profile.job_content|safe }}
       </p>
       <p>
-        {{ profile.activities|safe }} 
+        <strong><i class="fa fa-bookmark"></i> </a>Latest job goal: </strong> <a href="{% url 'achievements' %}">{{ current_goal.title }}</a>.
       </p>
       <p>
-       <strong><i class="icon-star"></i> Favourite hobby:</strong> the role playing. <a target="_blank" title="pathfinder" href="http://paizo.com/pathfinder">Pathfinder</a>, for the win.
+        {{ profile.hobby_content|safe }} 
+      </p>
+      <p>
+       <strong><i class="fa fa-bookmark"></i> </i> Favourite hobby:</strong> the role playing. <a target="_blank" title="pathfinder" href="http://paizo.com/pathfinder">Pathfinder</a>, for the win.
       </p>
       <hr/>
       <h4>Professional skills?</h4>

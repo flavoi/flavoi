@@ -26,7 +26,8 @@ class Bio(TimeStampedModel):
     subtitle = models.CharField(max_length=100)
     picture = models.ImageField(upload_to=settings.MEDIA_ROOT+'profile_pic/', blank=True)
     cv = models.FileField(upload_to=settings.MEDIA_ROOT+'curriculum_vitae', blank=True)
-    content = models.TextField(max_length=255, blank=True)
+    job_content = models.TextField()
+    hobby_content = models.TextField()
     email = models.EmailField()
     active = models.BooleanField(default=True) 
     
@@ -48,12 +49,14 @@ class Feature(models.Model):
 class Contact(Feature):
     """
     A model that contains a bunch of helpful links.
+    If primary it will be displayed in the first section of the webpage.
     """
     description = models.TextField(max_length=255, blank=True)
     label = models.CharField(max_length=30)
     link = models.URLField()
     icon = models.SlugField(max_length=30)
     primary = models.BooleanField(default=True)
+
     def __unicode__(self):
         return u'%s' % (self.label)
     
