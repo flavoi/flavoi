@@ -1,15 +1,14 @@
 from django.shortcuts import render
+from django.views.generic import ListView
 
-from bio.views import HomeView
 from .models import Goal
 
 
 # My job goals reside here
-class AchievementsView(HomeView):
+class AchievementsView(ListView):
+    model = Goal
     template_name = "achievements.html"
-    published_goals = Goal.objects.history()
-    context = {
-        'published_goals': published_goals,
-    }
-    def get(self, request):
-        return render(request, self.template_name, self.context)
+    context_object_name = 'published_goals'
+    
+    def get_queryset(self):
+        return Goal.objects.history()

@@ -42,9 +42,9 @@ ALLOWED_HOSTS = []
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
 # Applications
 # https://docs.djangoproject.com/en/1.7/ref/applications/
@@ -74,6 +74,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -83,7 +84,6 @@ ROOT_URLCONF = 'flavoi.urls'
 WSGI_APPLICATION = 'flavoi.wsgi.application'
 
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
-    'django.core.context_processors.request',
     'bio.context.copyright',
     'bio.context.profile',
 )
