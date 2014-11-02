@@ -38,7 +38,11 @@ SECRET_KEY = get_secret('FLAVOI_KEY')
 
 CURRENT_PROFILE = get_secret('CURRENT_PROFILE')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost', 
+    '127.0.0.1',
+    '.flavoi.it', 
+]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
