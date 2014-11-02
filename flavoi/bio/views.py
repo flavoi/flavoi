@@ -1,6 +1,5 @@
-from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic.base import View
+from django.views.generic import View, ListView, DetailView
 
 from django.conf import settings
 
@@ -14,28 +13,41 @@ class GreetingView(View):
     def get(self, request):
         return HttpResponse(self.greeting)
 
+
 # Render the homepage
-class HomeView(View):
+class HomeView(ListView):
+    model = Goal
     template_name = "home.html"
-    current_goal = Goal.objects.current()
-    context = {
-        'current_goal': current_goal,
-    }
-    def get(self, request):
-        return render(request, self.template_name, self.context)
+    context_object_name = 'current_goal'
+
+    def get_queryset(self):
+        return Goal.objects.current()
+
 
 # This quotes are the way of life
-class InspirationsView(HomeView):
+class InspirationsView(ListView):
+    model = Inspiration
     template_name = "inspirations.html"
-    inspirations = Inspiration.objects.filter(bio__active=True)
-    context = { 'inspirations': inspirations }
+    context_object_name = 'inspirations'
+
+    def get_queryset(self):
+        return Inspiration.objects.filter(bio__active=True)
+
 
 # How to find me
-class ContactsView(HomeView):
+class ContactsView(ListView):
+    model = Contact
     template_name = "contacts.html"
-    primary_contacts = Contact.objects.filter(bio__active=True).filter(primary=True)
-    secondary_contacts = Contact.objects.filter(bio__active=True).filter(primary=False)
-    context = { 
-        'primary_contacts': primary_contacts,
-        'secondary_contacts': secondary_contacts,
-    }
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(ContactsView, self).get_context_data(**kwargs)
+        # Add in a QuerySet of all the contacts
+        primary_contacts = Contact.objects.filter(bio__active=True).filter(primary=True)
+        secondary_contacts = Contact.objects.filter(bio__active=True).filter(primary=False)
+        context = { 
+            'primary_contacts': primary_contacts,
+            'secondary_contacts': secondary_contacts,
+        }
+        return context
+    

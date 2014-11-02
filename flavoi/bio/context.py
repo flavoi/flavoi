@@ -5,7 +5,7 @@
 from django.conf import settings
 from datetime import date
 
-from .models import Bio
+from .models import Bio, Inspiration
 
 
 # Automatic copyright to the current year.
