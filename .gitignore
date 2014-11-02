@@ -1,6 +1,6 @@
 # Secrets
 flavoi/flavoi.db
-flavoi/flavoi/flavoi/secrets.json
+secrets.json
 
 # Python bytecode
 *.py[co]
