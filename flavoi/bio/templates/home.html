@@ -9,7 +9,9 @@
     </header><!-- header end -->
     <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
       <p style="text-align: center;">
-        <img src="{{ profile.picture.url }}" alt="flavoi profile picture" width="940" height="390" title=""/>
+        {% if profile.picture %}
+          <img src="{{ profile.picture.url }}" alt="flavoi profile picture" width="940" height="390" title=""/>
+        {% endif %}
       </p>
       <p>
         {{ profile.job_content|safe }}
@@ -25,7 +27,9 @@
       </p>
       <hr/>
       <h4>Professional skills?</h4>
-      <a target="_blank" class="button" title="my curriculum vitae" href="{{ profile.cv.url }}">Download my Curriculum Vitae</a>
+      {% if profile.cv %}
+        <a target="_blank" class="button" title="my curriculum vitae" href="{{ profile.cv.url }}">Download my Curriculum Vitae</a>
+      {% endif %}
     </section><!-- .post-content end -->
   </article><!-- .post end -->
 {% endblock %}

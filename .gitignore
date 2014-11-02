@@ -1,5 +1,6 @@
 # Secrets
 flavoi/flavoi.db
+secrets.json
 
 # Python bytecode
 *.py[co]
