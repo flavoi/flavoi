@@ -10,20 +10,33 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 from os.path import abspath, basename, dirname, join, normpath
-from os import getenv
 from sys import path
 from unipath import Path
+import json
 
 BASE_DIR = Path(__file__).ancestor(2)
 
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
+from django.core.exceptions import ImproperlyConfigured
+
+# JSON-based secrets module
+with open(BASE_DIR.child('secrets.json'), 'r') as f:
+    secrets = json.load(f)
+
+def get_secret(settings, secrets=secrets):
+    """Get the secret variable or return explicit exception."""
+    try:
+        return secrets[settings]
+    except KeyError:
+        error_msg = "Set the {0} enviroment variable".format(settings)
+        raise ImproperlyConfigured(error_msg)
 
 # Configuration vars
 # SECURITY WARNING: keep the secret keys used in production secret!
 
-SECRET_KEY = getenv('FLAVOI_KEY')
+SECRET_KEY = get_secret('FLAVOI_KEY')
 
-CURRENT_PROFILE = getenv('CURRENT_PROFILE')
+CURRENT_PROFILE = get_secret('CURRENT_PROFILE')
 
 ALLOWED_HOSTS = []
 
@@ -103,9 +116,9 @@ USE_TZ = True
 # CKEditor support
 # https://github.com/shaunsephton/django-ckeditor
 
-AWS_ACCESS_KEY_ID = getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = getenv('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_ACCESS_KEY_ID = get_secret('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = get_secret('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = get_secret('AWS_STORAGE_BUCKET_NAME')
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 DEFAULT_S3_PATH = 'media'
