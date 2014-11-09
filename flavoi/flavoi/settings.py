@@ -46,9 +46,9 @@ ALLOWED_HOSTS = [
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True   
+DEBUG = False   
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
 # Applications
 # https://docs.djangoproject.com/en/1.7/ref/applications/
