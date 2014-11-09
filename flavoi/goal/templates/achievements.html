@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block extrahead %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/progress-bar.css" />
+{% endblock extrahead %}
+
 {% block achievements %}current{% endblock %}
 
 {% block content %}
@@ -26,10 +30,17 @@
         {% endif %}
         
         {{ goal.description|safe }}
-        
-        <p>
-            {{ goal.percentage }}% <progress value="{{ goal.percentage }}" max="100">{{ goal.percentage }}</progress>
-        </p>
+
+        <div class="progress">
+          <div class="progress-bar 
+            {% ifequal goal.percentage 100 %}
+                progress-bar-success
+            {% else %}
+                progress-bar-striped active 
+            {% endifequal %}" role="progressbar" aria-valuenow="{{ goal.percentage }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ goal.percentage}}%;">
+            <div class="content">{{ goal.percentage }}%</div>
+          </div>
+        </div>
         <hr/>
         {% endfor %}
     </section><!-- .post-content end -->
