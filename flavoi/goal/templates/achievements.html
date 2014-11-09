@@ -30,9 +30,15 @@
         {% endif %}
         
         {{ goal.description|safe }}
+
         <div class="progress">
-          <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{ goal.percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ goal.percentage }}%;">
-            {{ goal.percentage }}%
+          <div class="progress-bar 
+            {% ifequal goal.percentage 100 %}
+                progress-bar-success
+            {% else %}
+                progress-bar-striped active 
+            {% endifequal %}" role="progressbar" aria-valuenow="{{ goal.percentage }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ goal.percentage}}%;">
+            <div class="content">{{ goal.percentage }}%</div>
           </div>
         </div>
         <hr/>
