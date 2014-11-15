@@ -11,6 +11,6 @@ Features that will be included:
 - [x] my current job goal
 - [x] my favourite hobby
 - [x] achievements earned so far
-- [ ] the most up-to-date curriculum vitae
+- [x] the most up-to-date curriculum vitae
 
 *A special thanks to Daniel Greenfeld and Audrey Roy for writing the awesome book "Two Scoops of django".*
