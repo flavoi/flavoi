@@ -4,7 +4,7 @@ flavoi
 
 The web site that pretends to be a web app.
 
-Features that will be included:
+Included features:
 
 - [x] the site name
 - [x] profile and bio
