@@ -2,6 +2,7 @@ from datetime import date
 
 from django.shortcuts import render
 from django.views.generic import ListView
+from django.views.generic.detail import DetailView
 
 from .models import Goal
 
@@ -39,3 +40,10 @@ class MonthArchiveView(AchievementsView):
         year = self.args[0]
         month = self.args[1]
         return Goal.objects.get_month_archive(year, month)
+
+
+# Get the whole content of a single goal 
+class AchievementsDetailView(DetailView):
+    model = Goal
+    template_name = "achievements_details.html"
+    context_object_name = 'published_goal_detail'

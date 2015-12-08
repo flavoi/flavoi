@@ -19,7 +19,8 @@
         {{ profile.job_content|safe }}
       </p>
       <p>
-        <strong><i class="fa fa-star"></i> </a>Latest goal: </strong> <a href="{% url 'achievements' %}">{{ current_goal.title }}</a>.
+        <strong><i class="fa fa-star"></i> </a>Latest goal: </strong>
+        <a href="{% url 'achievement_detail' current_goal.created.year current_goal.created.month current_goal.pk %}">{{ current_goal.title }}</a>.
       </p>
       <p>
         {{ profile.hobby_content|safe }} 
