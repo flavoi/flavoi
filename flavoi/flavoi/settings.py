@@ -87,10 +87,10 @@ ROOT_URLCONF = 'flavoi.urls'
 
 WSGI_APPLICATION = 'flavoi.wsgi.application'
 
-TEMPLATE_CONTEXT_PROCESSORS = TCP + (
+TEMPLATE_CONTEXT_PROCESSORS = TCP + [
     'bio.context.copyright',
     'bio.context.profile',
-)
+]
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
