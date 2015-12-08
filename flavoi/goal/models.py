@@ -38,7 +38,6 @@ class Goal(TimeStampedModel):
     title = models.CharField(max_length=60)
     abstract = models.TextField(blank=True)
     description = models.TextField(blank=True, null=True)
-    picture = models.ImageField(upload_to=settings.MEDIA_ROOT+'goals/', blank=True, null=True)
     published = models.BooleanField(default=False)
     percentage = PositiveIntegerField(
         default=1,
