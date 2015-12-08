@@ -66,12 +66,14 @@
 
       <!-- navigation -->
       <nav role="navigation" id="navigation" class="clearfix"><!-- #navigation start -->
-        <ul class="level-one">
+        <ul class="level-one {% block extralevel %}{% endblock %}">
           {% block nav %}
             <li><a href="{% url 'home' %}" title="home" class="{% block home %}link{% endblock %}">Home</a></li>
             <li><a href="{% url 'inspirations' %}" title="inspirations" class="{% block inspirations %}link{% endblock %}">Inspirations</a></li>
             <li><a href="{% url 'contacts' %}" title="contacts" class="{% block contacts %}link{% endblock %}">Contacts</a></li>
-            <li><a href="{% url 'achievements' %}" title="achievements" class="{% block achievements %}link{% endblock %}">Achievements</a></li>
+            <li><a href="{% url 'achievements' %}" title="achievements" class="{% block achievements %}link{% endblock %} parent">Achievements</a>
+              {% block nav_achievements %}{% endblock %}
+            </li>
           {% endblock %}
         </ul>
       </nav><!-- #navigation end -->

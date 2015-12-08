@@ -12,3 +12,11 @@ class AchievementsView(ListView):
     
     def get_queryset(self):
         return Goal.objects.history()
+
+
+# My gob goals of a set year
+class YearArchiveView(AchievementsView):
+    
+    def get_queryset(self):
+        year = self.args[0]
+        return Goal.objects.current_year(year)

@@ -19,6 +19,12 @@ class GoalManager(models.QuerySet):
         goals = self.filter(published=True).order_by('-modified')
         return goals
 
+    # Get the list of published goals in the latest year
+    def current_year(self, year):
+        goals = self.filter(published=True).filter(created__year=year)
+        return goals
+
+
 class Goal(TimeStampedModel):
     """
         Personal and current projects or achievements.

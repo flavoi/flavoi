@@ -6,7 +6,14 @@
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/progress-bar.css" />
 {% endblock extrahead %}
 
-{% block achievements %}current{% endblock %}
+{% block extralevel %}level-two{% endblock %}
+{% block achievements %}current parent{% endblock %}
+{% block nav_achievements %}
+    <ul>
+        <li><a href="{% url 'year_archive' '2014' %}" title="Sub Page One" class="link">This Year</a></li>
+        <li><a href="/sunrise/test-page/sub-page-two/" title="Sub Page Two" class="link">This Month</a></li>
+    </ul>
+{% endblock %}
 
 {% block content %}
     <article class="post" role="article" itemscope itemtype="http://schema.org/BlogPosting"><!-- .post start -->
