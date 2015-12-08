@@ -19,11 +19,16 @@ class GoalManager(models.QuerySet):
         goals = self.filter(published=True).order_by('-modified')
         return goals
 
-    # Get the list of published goals in the latest year
-    def current_year(self, year):
+    # Get the list of published goals in the set year
+    def get_year_archive(self, year):
         goals = self.filter(published=True).filter(created__year=year)
         return goals
 
+    # Get the list of published goals in the set month
+    def get_month_archive(self, year, month):
+        goals = self.get_year_archive(year).filter(created__month=month)
+        return goals
+        
 
 class Goal(TimeStampedModel):
     """

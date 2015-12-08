@@ -10,8 +10,9 @@
 {% block achievements %}current parent{% endblock %}
 {% block nav_achievements %}
     <ul>
-        <li><a href="{% url 'year_archive' '2014' %}" title="Sub Page One" class="link">This Year</a></li>
-        <li><a href="/sunrise/test-page/sub-page-two/" title="Sub Page Two" class="link">This Month</a></li>
+        <li><a href="{% url 'achievements' %}" title="all-history" class="link">All History</a></li>
+        <li><a href="{% url 'year_archive' current_year %}" title="this-year" class="link">This Year</a></li>
+        <li><a href="{% url 'month_archive' current_year current_month %}" title="this-month" class="link">This Month</a></li>
     </ul>
 {% endblock %}
 
