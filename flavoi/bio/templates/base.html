@@ -56,18 +56,19 @@
        
         <!-- Search -->
         <div id="search-wrapper">
-          <div id="search-toggle"></div>
-            <form id="SearchForm_SearchForm" action="/sunrise/home/SearchForm" method="get" enctype="application/x-www-form-urlencoded">
+          <form id="SearchForm_SearchForm" action="{% url 'achievement_search' %}" method="get" accept-charset="utf-8">
               <fieldset>
-                <div id="Search" class="field text nolabel">
+                <div id="Search">
                   <div class="middleColumn">
-                    <input type="text" name="Search" class="text nolabel" id="SearchForm_SearchForm_Search" />
+                    <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search" autofocus>
                   </div>
                  </div>
-                 <input type="submit" name="action_results" value="Search" class="action action" id="SearchForm_SearchForm_action_results">
+                  <button class="searchbutton" type="submit">
+                    <i class="fa fa-search"></i>
+                  </button>
                </fieldset>
             </form>
-            </div>
+        </div>
         
         <!-- Title -->
         <h1><a href="{% url 'home' %}" title="{{ profile.name|title }}">Hi, I'm {{ profile.title|title }}</a></h1>      

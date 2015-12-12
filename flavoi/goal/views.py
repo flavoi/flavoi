@@ -1,5 +1,7 @@
 from datetime import date
+import operator
 
+from django.db.models import Q
 from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
@@ -48,3 +50,21 @@ class AchievementsDetailView(DetailView):
     model = Goal
     template_name = "achievements_details.html"
     context_object_name = 'published_goal_detail'
+
+
+# Display an Achievement List page filtered by the search query.
+class AchievementsSearchView(AchievementsView):
+
+    def get_queryset(self):
+        result = super(AchievementsView, self).get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            query_list = query.split()
+            print query_list
+            result = result.filter(
+                reduce(operator.and_,
+                       (Q(title__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                       (Q(abstract__icontains=q) for q in query_list))
+            )
+        return result
