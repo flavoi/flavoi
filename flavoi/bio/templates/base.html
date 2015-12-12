@@ -39,14 +39,6 @@
   <!-- Load jQuery -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
-
-  <!-- Scripts -->
-  <script type="text/javascript">
-      $(document).ready(function(){
-        $(".fade").hide(0).delay(200).fadeIn(1000)
-      });
-  </script>
-
   <!-- Load CSS -->
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/sunrise/style.css?m=1329303883" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -58,6 +50,7 @@
 <body class="clearfix">
 
   <header role="banner" id="header"><!-- #header start -->
+
     {% block header %}
       <div id="inner-header" class="clearfix"><!-- #inner-header start -->
        
@@ -78,10 +71,10 @@
         
         <!-- Title -->
         <h1><a href="{% url 'home' %}" title="{{ profile.name|title }}">Hi, I'm {{ profile.title|title }}</a></h1>      
-        
+
         <!-- Subtitle -->
         <p>{{ profile.subtitle }}.</p>
-        </div><!-- #inner-header end -->
+      </div><!-- #inner-header end -->  
 
       <!-- navigation -->
       <nav role="navigation" id="navigation" class="clearfix"><!-- #navigation start -->
@@ -96,10 +89,11 @@
           {% endblock %}
         </ul>
       </nav><!-- #navigation end -->
-    {% endblock %}
+    
+    {% endblock header %}
   </header><!-- #header end -->
 
-  <div class="fade"><!-- juicy fade in -->
+  <div id="fading" style="display:none"><!-- juicy fade in -->
     <div id="content" class="clearfix"><!-- #content start -->
       <div id="main" role="main" class="clearfix"><!-- #main start -->
         {% block content %}{% endblock %}
@@ -113,83 +107,14 @@
     </div><!-- #inner-footer end -->
   </footer><!-- #footer end -->
 
-  <!-- Scripts -->
-  <script src="{{ STATIC_URL }}js/sunrise/plugins.js"></script>
-  <script src="{{ STATIC_URL }}js/sunrise/script.js"></script>
-  <script src="{{ STATIC_URL }}js/sunrise/mylibs/helper.js"></script>
-  
-  <!--[if (lt IE 9) & (!IEMobile)]>
-  <script src="{{ STATIC_URL }}js/sunrise/libs/imgsizer.js"></script>
-  <![endif]-->
-  
-  <script>
-  // iOS scale bug fix
-  MBP.scaleFix();
-  
-  // Respond.js
-  yepnope({
-    test : Modernizr.mq('(only all)'),
-    nope : ['{{ STATIC_URL }}js/sunrise/libs/respond.min.js']
-  });
-  </script>
-  
-  <script type="text/javascript">//<![CDATA[
-  Behaviour.register({
-  '#SearchForm_SearchForm': {
-    validate : function(fromAnOnBlur) {
-      initialiseForm(this, fromAnOnBlur);
-      
-
-      var error = hasHadFormError();
-      if(!error && fromAnOnBlur) clearErrorMessage(fromAnOnBlur);
-      if(error && !fromAnOnBlur) focusOnFirstErroredField();
-      
-      return !error;
-    },
-    onsubmit : function() {
-      if(typeof this.bypassValidation == 'undefined' || !this.bypassValidation) return this.validate();
-    }
-  },
-  '#SearchForm_SearchForm input' : {
-    initialise: function() {
-      if(!this.old_onblur) this.old_onblur = function() { return true; } 
-      if(!this.old_onfocus) this.old_onfocus = function() { return true; } 
-    },
-    onblur : function() {
-      if(this.old_onblur()) {
-        // Don't perform instant validation for CalendarDateField fields; it creates usability wierdness.
-        if(this.parentNode.className.indexOf('calendardate') == -1 || this.value) {
-          return $('SearchForm_SearchForm').validate(this);
-        } else {
-          return true;
-        }
-      }
-    }
-  },
-  '#SearchForm_SearchForm textarea' : {
-    initialise: function() {
-      if(!this.old_onblur) this.old_onblur = function() { return true; } 
-      if(!this.old_onfocus) this.old_onfocus = function() { return true; } 
-    },
-    onblur : function() {
-      if(this.old_onblur()) {
-        return $('SearchForm_SearchForm').validate(this);
-      }
-    }
-  },
-  '#SearchForm_SearchForm select' : {
-    initialise: function() {
-      if(!this.old_onblur) this.old_onblur = function() { return true; } 
-    },
-    onblur : function() {
-      if(this.old_onblur()) {
-        return $('SearchForm_SearchForm').validate(this); 
-      }
-    }
-  }
-});
-
-//]]></script>
-
 </body>
+
+<!-- Scripts -->
+<script type="text/javascript">
+  $( document ).ready(function() {
+    console.log( "ready!" );
+    $("#fading").fadeIn('slow');
+  });
+</script>
+
 </html>
