@@ -22,12 +22,14 @@
         <strong><i class="fa fa-star"></i> </a>Latest goal: </strong>
         <a href="{% url 'achievement_detail' current_goal.created.year current_goal.created.month current_goal.pk %}">{{ current_goal.title }}</a>.
       </p>
-      <p>
-        {{ profile.hobby_content|safe }} 
-      </p>
-      <p>
-       <strong><i class="fa fa-star"></i> </i> Favourite hobby:</strong> the role playing. <a target="_blank" title="pathfinder" href="http://paizo.com/pathfinder">Pathfinder</a>, for the win.
-      </p>
+      {% if profile.hobby_content %}
+        <p>
+          {{ profile.hobby_content|safe }} 
+        </p>
+        <p>
+         <strong><i class="fa fa-star"></i> </i> Favourite hobby:</strong> the role playing. <a target="_blank" title="pathfinder" href="http://paizo.com/pathfinder">Pathfinder</a>, for the win.
+        </p>
+      {% endif %}
       <hr/>
       {% if profile.cv %}
       <h4>Professional skills?</h4>
