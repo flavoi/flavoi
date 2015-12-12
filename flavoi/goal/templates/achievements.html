@@ -25,10 +25,10 @@
             {% if published_goals %}
                 {% for goal in published_goals %}
                     <h3>
-                        {% ifequal goal.percentage 100 %}
-                            <i class="fa fa-trophy"></i>
-                        {% endifequal %}
-                        {{ goal.title }}
+                            {% ifequal goal.percentage 100 %}
+                                <i class="fa fa-trophy"></i>
+                            {% endifequal %}
+                            {{ goal.title }}
                     </h3>
                     <p>
                         <strong>Created:</strong> {{ goal.created }} | <strong>Updated:</strong> {{ goal.modified }}
@@ -36,8 +36,6 @@
 
                     <i class="fa fa-bookmark fa-3x fa-pull-left fa-border"></i>
                     {{ goal.abstract|safe }}
-
-                    <p><strong><a href="{% url 'achievement_detail' current_year current_month goal.pk %}" title="read-more">READ MORE ></a></strong></p>
 
                     <div class="progress">
                       <div class="progress-bar 
@@ -49,6 +47,10 @@
                         <div class="content">{{ goal.percentage }}%</div>
                       </div>
                     </div>
+
+                    <h4>
+                        <a href="{% url 'achievement_detail' current_year current_month goal.pk %}" title="read-more">read more ></a>
+                    </h4>
 
                     <hr/>
                 {% endfor %}
