@@ -4,29 +4,29 @@ from django.db.models.fields import PositiveIntegerField
 from django.db.models.query import QuerySet
 from django.conf import settings
 
-from bio.models import TimeStampedModel
+from bio.models import TimeStampedModel, Bio
 
 
 class GoalManager(models.QuerySet):
     
     # Get the most recent goal
     def current(self):
-        current_goal = self.filter(published=True).latest('modified')
+        current_goal = self.filter(published=True).filter(bio__active=True).latest('modified')
         return current_goal
 
     # Get the list of published goals from the most recent to the least 
     def history(self):
-        goals = self.filter(published=True).order_by('-modified')
+        goals = self.filter(published=True).filter(bio__active=True).order_by('-modified')
         return goals
 
     # Get the list of published goals in the set year
     def get_year_archive(self, year):
-        goals = self.filter(published=True).filter(created__year=year)
+        goals = self.filter(published=True).filter(bio__active=True).filter(created__year=year)
         return goals
 
     # Get the list of published goals in the set month
     def get_month_archive(self, year, month):
-        goals = self.get_year_archive(year).filter(created__month=month)
+        goals = self.get_year_archive(year).filter(bio__active=True).filter(created__month=month)
         return goals
         
 
@@ -45,6 +45,12 @@ class Goal(TimeStampedModel):
             MaxValueValidator(100),
         ]
      )
+    bio = models.ForeignKey(
+        Bio,
+        null=True,
+        on_delete=models.SET_NULL,
+        primary_key=False,
+    )
     
     objects = GoalManager.as_manager()
 
