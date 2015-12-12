@@ -11,19 +11,23 @@
     </header><!-- header end -->
     
     <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
-      <h3>How to find me</h3>
-      <ul>
-        {% for prim in primary_contacts %}
-          <li> On <a title="{{ prim.icon }}" href="{{ prim.link }}"><i class="fa fa-{{ prim.icon }}"></i> {{ prim.label|title }}</a></li>
-        {% endfor %}
-      </ul>
-      <h3>Or eventually...</h3>
-      <ul>
-        {% for seco in secondary_contacts %}
-          <li> {{ seco.description|capfirst }} <a title="{{ seco.icon }}" href="{{ seco.link }}">{{ seco.label|title }}</a></li>
-        {% endfor %}
-        <li> Say hello by <a title="email" href="mailto:{{ profile.email }}">email</a>!</li>
-      </ul>
+      {% if primary_contacts %}
+        <h3>How to find me</h3>
+        <ul>
+          {% for prim in primary_contacts %}
+            <li> On <a title="{{ prim.icon }}" href="{{ prim.link }}"><i class="fa fa-{{ prim.icon }}"></i> {{ prim.label|title }}</a></li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      {% if secondary_contacts %}
+        <h3>Or eventually...</h3>
+        <ul>
+          {% for seco in secondary_contacts %}
+            <li> {{ seco.description|capfirst }} <a title="{{ seco.icon }}" href="{{ seco.link }}">{{ seco.label|title }}</a></li>
+          {% endfor %}
+          <li> Say hello by <a title="email" href="mailto:{{ profile.email }}">email</a>!</li>
+        </ul>
+      {% endif %}
     </section><!-- .post-content end -->
   </article><!-- .post end -->
 {% endblock %}
