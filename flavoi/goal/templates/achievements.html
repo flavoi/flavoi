@@ -26,7 +26,7 @@
                 {% for goal in published_goals %}
                     <h3 class="postTitle">
                         {% ifequal goal.percentage 100 %}
-                            <i class="fa fa-trophy"></i>
+                            <i class="fa fa-diamond"></i>
                         {% endifequal %}
                         <a href="{% url 'achievement_detail' current_year current_month goal.pk %}">{{ goal.title }}</a>
                     </h3>
