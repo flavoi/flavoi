@@ -24,13 +24,14 @@
         <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
             {% if published_goals %}
                 {% for goal in published_goals %}
-                    <h3>
-                            {% ifequal goal.percentage 100 %}
-                                <i class="fa fa-trophy"></i>
-                            {% endifequal %}
-                            {{ goal.title }}
+                    <h3 class="postTitle">
+                        {% ifequal goal.percentage 100 %}
+                            <i class="fa fa-trophy"></i>
+                        {% endifequal %}
+                        <a href="{% url 'achievement_detail' current_year current_month goal.pk %}">{{ goal.title }}</a>
                     </h3>
-                    <p>
+
+                    <p class="authorDate">
                         <strong>Created:</strong> {{ goal.created }} | <strong>Updated:</strong> {{ goal.modified }}
                     </p>
 
@@ -71,7 +72,7 @@
                 {% endif %}
                 
             {% else %}
-                <h4>The aren't any goals :(</h4>
+                <h4>There aren't any goals :(</h4>
             {% endif %}
         </section><!-- .post-content end -->
     </article><!-- .post end -->
