@@ -10,9 +10,9 @@
 {% block achievements %}current parent{% endblock %}
 {% block nav_achievements %}
     <ul>
-        <li><a href="{% url 'achievements' %}" title="all-history" class="link">All History</a></li>
-        <li><a href="{% url 'year_archive' current_year %}" title="this-year" class="link">This Year</a></li>
-        <li><a href="{% url 'month_archive' current_year current_month %}" title="this-month" class="link">This Month</a></li>
+        <li><a href="{% url 'achievements' %}" title="all-history" class="{{ history_link_class }}">All History</a></li>
+        <li><a href="{% url 'year_archive' current_year %}" title="this-year" class="{{ year_link_class }}">This Year</a></li>
+        <li><a href="{% url 'month_archive' current_year current_month %}" title="this-month" class="{{ month_link_class }}">This Month</a></li>
     </ul>
 {% endblock %}
 
@@ -34,7 +34,6 @@
                         <strong>Created:</strong> {{ goal.created }} | <strong>Updated:</strong> {{ goal.modified }}
                     </p>
 
-                    <i class="fa fa-bookmark fa-3x fa-pull-left fa-border"></i>
                     {{ goal.abstract|safe }}
 
                     <div class="progress">

@@ -9,7 +9,7 @@ from django.views.generic.detail import DetailView
 from .models import Goal
 
 
-# My job goals reside here
+# My goals in all history
 class AchievementsView(ListView):
     model = Goal
     template_name = "achievements.html"
@@ -25,6 +25,9 @@ class AchievementsView(ListView):
         # Add in a timestamp for the archive
         context['current_year'] = date.today().year
         context['current_month'] = date.today().month
+        context['history_link_class'] = 'current'
+        context['year_link_class'] = 'link'
+        context['month_link_class'] = 'link'
         return context
 
 
@@ -35,6 +38,13 @@ class YearArchiveView(AchievementsView):
         year = self.args[0]
         return Goal.objects.get_year_archive(year)
 
+    def get_context_data(self, **kwargs):
+        context = super(YearArchiveView, self).get_context_data(**kwargs)
+        context['history_link_class'] = 'link'
+        context['year_link_class'] = 'current'
+        context['month_link_class'] = 'link'
+        return context
+
 
 # My goals in a set month
 class MonthArchiveView(AchievementsView):
@@ -43,6 +53,13 @@ class MonthArchiveView(AchievementsView):
         year = self.args[0]
         month = self.args[1]
         return Goal.objects.get_month_archive(year, month)
+
+    def get_context_data(self, **kwargs):
+        context = super(MonthArchiveView, self).get_context_data(**kwargs)
+        context['history_link_class'] = 'link'
+        context['year_link_class'] = 'link'
+        context['month_link_class'] = 'current'
+        return context
 
 
 # Get the whole content of a single goal 
@@ -68,3 +85,10 @@ class AchievementsSearchView(AchievementsView):
                        (Q(abstract__icontains=q) for q in query_list))
             )
         return result
+
+    def get_context_data(self, **kwargs):
+        context = super(AchievementsSearchView, self).get_context_data(**kwargs)
+        context['history_link_class'] = 'link'
+        context['year_link_class'] = 'link'
+        context['month_link_class'] = 'link'
+        return context
