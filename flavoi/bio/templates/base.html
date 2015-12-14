@@ -41,7 +41,7 @@
 
   <!-- Load CSS -->
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/sunrise/style.css?m=1329303883" />
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/font-awesome-4.5.0/css/font-awesome.min.css">
   <link rel="shortcut icon" href="{{ STATIC_URL }}img/flavoi.ico" />
 
   <style type="text/css">
@@ -99,10 +99,10 @@
       <nav role="navigation" id="navigation" class="clearfix"><!-- #navigation start -->
         <ul class="level-one {% block extralevel %}{% endblock %}">
           {% block nav %}
-            <li><a href="{% url 'home' %}" title="home" class="{% block home %}link{% endblock %}">Home</a></li>
-            <li><a href="{% url 'inspirations' %}" title="inspirations" class="{% block inspirations %}link{% endblock %}">Inspirations</a></li>
-            <li><a href="{% url 'contacts' %}" title="contacts" class="{% block contacts %}link{% endblock %}">Contacts</a></li>
-            <li><a href="{% url 'achievements' %}" title="achievements" class="{% block achievements %}link{% endblock %} parent">Achievements</a>
+            <li><a href="{% url 'home' %}" title="home" class="{% block home %}link{% endblock %}"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="{% url 'inspirations' %}" title="inspirations" class="{% block inspirations %}link{% endblock %}"><i class="fa fa-university"></i> Inspirations</a></li>
+            <li><a href="{% url 'contacts' %}" title="contacts" class="{% block contacts %}link{% endblock %}"><i class="fa fa-user"></i> Contacts</a></li>
+            <li><a href="{% url 'achievements' %}" title="achievements" class="{% block achievements %}link{% endblock %} parent"><i class="fa fa-diamond"></i> Achievements</a>
               {% block nav_achievements %}{% endblock %}
             </li>
           {% endblock %}
