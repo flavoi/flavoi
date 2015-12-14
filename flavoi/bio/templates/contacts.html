@@ -15,7 +15,12 @@
         <h3>How to find me</h3>
         <ul>
           {% for prim in primary_contacts %}
-            <li> On <a title="{{ prim.icon }}" href="{{ prim.link }}"><i class="fa fa-{{ prim.icon }}"></i> {{ prim.label|title }}</a></li>
+            <li> On
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-square-o fa-stack-2x"></i>
+                <i class="fa fa-{{ prim.icon }} fa-stack-1x"></i>
+              </span> 
+               <a title="{{ prim.icon }}" href="{{ prim.link }}">{{ prim.label|title }}</a></li>
           {% endfor %}
         </ul>
       {% endif %}
