@@ -78,7 +78,7 @@
               <fieldset>
                 <div id="Search">
                   <div class="middleColumn">
-                    <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search" autofocus>
+                    <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search" autofocus {% if 'search_query' %}value={{ search_query }}{% endif %}>
                   </div>
                  </div>
                   <button class="searchbutton" type="submit">
