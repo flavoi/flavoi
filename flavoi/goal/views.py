@@ -91,4 +91,5 @@ class AchievementsSearchView(AchievementsView):
         context['history_link_class'] = 'link'
         context['year_link_class'] = 'link'
         context['month_link_class'] = 'link'
+        context['search_query'] = self.request.GET.get('q')
         return context
