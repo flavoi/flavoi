@@ -19,11 +19,6 @@ flavoi/goal/migrations/*
 # Logs
 *.log
 
-# Eclipse
-.project
-.pydevproject
-.settings
-
 # Linux Editors
 *~
 \#*\#
