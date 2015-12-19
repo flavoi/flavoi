@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}achievements{% endblock %}
+
+{% block extrahead %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/progress-bar.css" />
+{% endblock extrahead %}
+
+{% block extralevel %}level-one{% endblock %}
+{% block achievements %}current parent{% endblock %}
+{% block nav_achievements %}{% endblock %}
+
+{% block content %}
+    <article class="post" role="article" itemscope itemtype="http://schema.org/BlogPosting"><!-- .post start -->
+    <header><!-- header start -->
+        <h2 class="page-title" itemprop="headline">{{ published_goal_detail.title }}</h2>
+    </header><!-- header end -->
+    <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
+        <p class="authorDate">
+            <strong>Created:</strong> {{ published_goal_detail.created }} | <strong>Updated:</strong> {{ published_goal_detail.modified }}
+        </p>
+
+        {{ published_goal_detail.abstract|safe }}
+        {{ published_goal_detail.description|safe }}
+
+        <div class="progress">
+          <div class="progress-bar 
+            {% ifequal published_goal_detail.percentage 100 %}
+                progress-bar-success
+            {% else %}
+                progress-bar-striped active 
+            {% endifequal %}" role="progressbar" aria-valuenow="{{ published_goal_detail.percentage }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ published_goal_detail.percentage}}%;">
+            <div class="content">{{ published_goal_detail.percentage }}%</div>
+          </div>
+        </div>
+        <hr/>
+    </section><!-- .post-content end -->
+    </article><!-- .post end -->
+{% endblock %}

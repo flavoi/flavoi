@@ -19,17 +19,20 @@
         {{ profile.job_content|safe }}
       </p>
       <p>
-        <strong><i class="fa fa-star"></i> </a>Latest goal: </strong> <a href="{% url 'achievements' %}">{{ current_goal.title }}</a>.
+        <strong><i class="fa fa-star"></i> </a>Latest goal: </strong>
+        <a href="{% url 'achievement_detail' current_goal.created.year current_goal.created.month current_goal.pk %}">{{ current_goal.title }}</a>.
       </p>
-      <p>
-        {{ profile.hobby_content|safe }} 
-      </p>
-      <p>
-       <strong><i class="fa fa-star"></i> </i> Favourite hobby:</strong> the role playing. <a target="_blank" title="pathfinder" href="http://paizo.com/pathfinder">Pathfinder</a>, for the win.
-      </p>
+      {% if profile.hobby_content %}
+        <p>
+          {{ profile.hobby_content|safe }} 
+        </p>
+        <p>
+         <strong><i class="fa fa-star"></i> </i> Favourite hobby:</strong> the role playing. <a target="_blank" title="pathfinder" href="http://paizo.com/pathfinder">Pathfinder</a>, for the win.
+        </p>
+      {% endif %}
       <hr/>
-      <h4>Professional skills?</h4>
       {% if profile.cv %}
+      <h4>Professional skills?</h4>
         <a target="_blank" class="button" title="my curriculum vitae" href="{{ profile.cv.url }}">Download my Curriculum Vitae</a>
       {% endif %}
     </section><!-- .post-content end -->

@@ -3,6 +3,8 @@
     This script contains useful informations for every template.
 """
 from django.conf import settings
+from django.shortcuts import get_object_or_404
+
 from datetime import date
 
 from .models import Bio, Inspiration
@@ -20,5 +22,5 @@ def copyright(request):
 
 # The current Bio object is critical in many templates.
 def profile(request):
-    profile = Bio.objects.get(active=True)
+    profile = get_object_or_404(Bio, active=True)
     return { 'profile': profile }
