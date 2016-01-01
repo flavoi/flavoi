@@ -60,6 +60,12 @@
       color: #666666;
       text-shadow: none;
     }
+
+    @media screen and (max-width: 600px) {
+      .wide-only {
+        visibility: hidden;
+      }
+    }
   </style>
 
   {% block extrahead %}{% endblock %}
@@ -73,7 +79,7 @@
       <div id="inner-header" class="clearfix"><!-- #inner-header start -->
        
         <!-- Search -->
-        <div id="search-wrapper">
+        <div id="search-wrapper" class="wide-only">
           <form id="SearchForm_SearchForm" action="{% url 'achievement_search' %}" method="get" accept-charset="utf-8">
               <fieldset>
                 <div id="Search">
@@ -97,16 +103,16 @@
 
       <!-- navigation -->
       <nav role="navigation" id="navigation" class="clearfix"><!-- #navigation start -->
-        <ul class="level-one {% block extralevel %}{% endblock %}">
-          {% block nav %}
-            <li><a href="{% url 'home' %}" title="home" class="{% block home %}link{% endblock %}"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="{% url 'inspirations' %}" title="inspirations" class="{% block inspirations %}link{% endblock %}"><i class="fa fa-university"></i> Inspirations</a></li>
-            <li><a href="{% url 'contacts' %}" title="contacts" class="{% block contacts %}link{% endblock %}"><i class="fa fa-user"></i> Contacts</a></li>
-            <li><a href="{% url 'achievements' %}" title="achievements" class="{% block achievements %}link{% endblock %} parent"><i class="fa fa-diamond"></i> Achievements</a>
-              {% block nav_achievements %}{% endblock %}
-            </li>
-          {% endblock %}
-        </ul>
+          <ul class="level-one {% block extralevel %}{% endblock %}">
+            {% block nav %}
+              <li><a href="{% url 'home' %}" title="home" class="{% block home %}link{% endblock %}"><i class="fa fa-home fa-fw"></i> Home</a></li>
+              <li><a href="{% url 'inspirations' %}" title="inspirations" class="{% block inspirations %}link{% endblock %}"><i class="fa fa-university fa-fw"></i> Inspirations</a></li>
+              <li><a href="{% url 'contacts' %}" title="contacts" class="{% block contacts %}link{% endblock %}"><i class="fa fa-user fa-fw"></i> Contacts</a></li>
+              <li><a href="{% url 'achievements' %}" title="achievements" class="{% block achievements %}link{% endblock %} parent"><i class="fa fa-diamond fa-fw"></i> Achievements</a>
+                {% block nav_achievements %}{% endblock %}
+              </li>
+            {% endblock %}
+          </ul>
       </nav><!-- #navigation end -->
     
     {% endblock header %}
