@@ -20,7 +20,7 @@
       </p>
       <p>
         <strong><i class="fa fa-star"></i> </a>Latest goal: </strong>
-        <a href="{% url 'achievement_detail' current_goal.created.year current_goal.created.month current_goal.pk %}">{{ current_goal.title }}</a>.
+        <a href="{% url 'achievement_detail' current_goal.created|date:"Y" current_goal.created|date:"m" current_goal.pk %}">{{ current_goal.title }}</a>.
       </p>
       {% if profile.hobby_content %}
         <p>
