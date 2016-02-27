@@ -23,8 +23,8 @@ class AchievementsView(ListView):
         # Call the base implementation first to get a context
         context = super(AchievementsView, self).get_context_data(**kwargs)
         # Add in a timestamp for the archive
-        context['current_year'] = date.today().year
-        context['current_month'] = date.today().month
+        context['current_year'] = date.today().strftime("%Y")
+        context['current_month'] = date.today().strftime("%m")
         context['history_link_class'] = 'current'
         context['year_link_class'] = 'link'
         context['month_link_class'] = 'link'
