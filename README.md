@@ -14,3 +14,4 @@ Included features:
 - [x] search capabilities though the above content
 
 *A special thanks to Daniel Greenfeld and Audrey Roy for writing the awesome book "Two Scoops of django".*
+ 
