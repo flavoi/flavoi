@@ -9,26 +9,31 @@ from bio.models import TimeStampedModel, Bio
 
 class GoalManager(models.QuerySet):
     
+    # Get all the published goals from the active Bio 
+    def get_all_active_goals(self):
+        goals = self.filter(published=True).filter(bio__active=True)
+        return goals
+
     # Get the most recent goal
     def current(self):
-        current_goal = self.filter(published=True).filter(bio__active=True).latest('modified')
+        current_goal = self.get_all_active_goals().latest('modified')
         return current_goal
 
     # Get the list of published goals from the most recent to the least 
     def history(self):
-        goals = self.filter(published=True).filter(bio__active=True).order_by('-modified')
+        goals = self.get_all_active_goals().order_by('-modified')
         return goals
 
     # Get the list of published goals in the set year
     def get_year_archive(self, year):
-        goals = self.filter(published=True).filter(bio__active=True).filter(created__year=year)
+        goals = self.get_all_active_goals().filter(created__year=year)
         return goals
 
     # Get the list of published goals in the set month
     def get_month_archive(self, year, month):
-        goals = self.get_year_archive(year).filter(bio__active=True).filter(created__month=month)
+        goals = self.get_year_archive(year).filter(created__month=month)
         return goals
-        
+
 
 class Goal(TimeStampedModel):
     """

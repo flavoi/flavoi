@@ -74,6 +74,7 @@ class AchievementsSearchView(AchievementsView):
 
     def get_queryset(self):
         result = super(AchievementsView, self).get_queryset()
+        result = result.get_all_active_goals() # active goals only, even if the query is empty
         query = self.request.GET.get('q')
         if query:
             query_list = query.split()
