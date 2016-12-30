@@ -1,1 +1,12 @@
-204
+update 2 v2.1 - 30/12/2016
+   - Removed favourite hobby star since it is already included in hobby section
+   - Added version log in version.txt
+
+update 1 v2.0 - 09/11/2015
+   - Added search field for every goal in the website
+   - Updated styling for social icons
+   - Upgraded Achievemnts page with a standard structure, pagination and dedicated url
+   - Upgraded django to 1.9
+   - Updated styling for contrib.admin
+
+release v1.0 - 02/11/2014
