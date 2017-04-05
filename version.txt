@@ -1,7 +1,6 @@
 update 2, version 2.0.0 - xx/xx/xxx
    - Removed favourite hobby star since it is already included in hobby section
    - Added version log in version.txt
-   - Updated django to 1.11.0
    - Updated ckeditor to 5.2.1 
    - Added tags management and filters for goals
 

@@ -4,6 +4,8 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.conf import settings
 
+from ckeditor.fields import RichTextField
+
 
 class TimeStampedModel(models.Model):
     """
@@ -26,8 +28,8 @@ class Bio(TimeStampedModel):
     subtitle = models.CharField(max_length=100)
     picture = models.ImageField(upload_to='profile_pic/', blank=True)
     cv = models.FileField(upload_to='curriculum_vitae', blank=True)
-    job_content = models.TextField()
-    hobby_content = models.TextField()
+    job_content = RichTextField()
+    hobby_content = RichTextField()
     email = models.EmailField()
     active = models.BooleanField(default=True) 
     
@@ -40,7 +42,27 @@ class Feature(models.Model):
     This abstract class connect all the infos to the main 
     profile.
     """
-    bio = models.ForeignKey(Bio)
+    bio = models.ForeignKey(
+        Bio,
+        null=True,
+        on_delete=models.SET_NULL,
+        primary_key=False,
+    )
+    
+    class Meta:
+        abstract = True
+
+
+class TimeStampedFeature(TimeStampedModel):
+    """
+    This class is suited for features with a creation date.
+    """
+    bio = models.ForeignKey(
+        Bio,
+        null=True,
+        on_delete=models.SET_NULL,
+        primary_key=False,
+    )
     
     class Meta:
         abstract = True

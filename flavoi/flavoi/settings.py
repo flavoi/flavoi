@@ -61,6 +61,9 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     'storages',
+    'ckeditor',
+    'colorfield',
+    'fontawesome',
 )
 
 LOCAL_APPS = (
@@ -137,9 +140,6 @@ USE_TZ = True
 # Amazon S3 support
 # http://aws.amazon.com/
 
-# CKEditor support
-# https://github.com/shaunsephton/django-ckeditor
-
 AWS_ACCESS_KEY_ID = get_secret('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = get_secret('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = get_secret('AWS_STORAGE_BUCKET_NAME')
@@ -154,3 +154,8 @@ MEDIA_URL = '//s3.amazonaws.com/%s/media/' % AWS_STORAGE_BUCKET_NAME
 STATIC_ROOT = "/%s/" % STATIC_S3_PATH
 STATIC_URL = '//s3.amazonaws.com/%s/static/' % AWS_STORAGE_BUCKET_NAME
 ADMIN_MEDIA_PREFIX = 'admin/'
+
+# Ckeditor support
+# https://github.com/django-ckeditor/django-ckeditor#installation
+
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'

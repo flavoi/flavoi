@@ -4,7 +4,11 @@ from django.db.models.fields import PositiveIntegerField
 from django.db.models.query import QuerySet
 from django.conf import settings
 
-from bio.models import TimeStampedModel, Bio
+from ckeditor.fields import RichTextField
+from colorfield.fields import ColorField
+from fontawesome.fields import IconField
+
+from bio.models import TimeStampedFeature
 
 
 class GoalManager(models.QuerySet):
@@ -35,19 +39,26 @@ class GoalManager(models.QuerySet):
         return goals
 
 
-class GoalTag():
+class GoalTheme(TimeStampedFeature):
     """
-        
+        Defines the theme and the argument of a certain goal.
     """
+    title = models.CharField(max_length=60)
+    icon = IconField()
+    color = ColorField()
 
-class Goal(TimeStampedModel):
+    def __unicode__(self):
+        return u'%s' % (self.titles)
+
+
+class Goal(TimeStampedFeature):
     """
         Personal and current projects or achievements.
         To add: work in progress details.
     """
     title = models.CharField(max_length=60)
-    abstract = models.TextField(blank=True)
-    description = models.TextField(blank=True, null=True)
+    abstract = RichTextField()
+    description = RichTextField()
     published = models.BooleanField(default=False)
     percentage = PositiveIntegerField(
         default=1,
@@ -55,13 +66,8 @@ class Goal(TimeStampedModel):
             MaxValueValidator(100),
         ]
      )
-    bio = models.ForeignKey(
-        Bio,
-        null=True,
-        on_delete=models.SET_NULL,
-        primary_key=False,
-    )
-    
+    theme = models.ForeignKey(GoalTheme, null=True, on_delete=models.SET_NULL)
+
     objects = GoalManager.as_manager()
 
     def __unicode__(self):

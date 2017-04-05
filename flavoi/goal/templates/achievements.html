@@ -32,7 +32,9 @@
                     </h3>
 
                     <p class="authorDate">
-                        <strong>Created:</strong> {{ goal.created }} | <strong>Updated:</strong> {{ goal.modified }}
+                        <strong>{{ goal.theme.title }}</strong> |
+                        <strong>Created:</strong> {{ goal.created }} | 
+                        <strong>Updated:</strong> {{ goal.modified }}
                     </p>
 
                     {{ goal.abstract|safe }}
