@@ -17,7 +17,9 @@
     </header><!-- header end -->
     <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
         <p class="authorDate">
-            <strong>Created:</strong> {{ published_goal_detail.created }} | <strong>Updated:</strong> {{ published_goal_detail.modified }}
+            <strong style="color: {{ published_goal_detail.theme.color}} ">{{ published_goal_detail.theme.icon.as_html }} {{ published_goal_detail.theme }}</strong> |
+            <strong>Created:</strong> {{ published_goal_detail.created }} |
+            <strong>Updated:</strong> {{ published_goal_detail.modified }}
         </p>
 
         {{ published_goal_detail.abstract|safe }}

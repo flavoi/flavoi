@@ -38,17 +38,22 @@ class GoalManager(models.QuerySet):
         goals = self.get_year_archive(year).filter(created__month=month)
         return goals
 
+    # Get the list of published goals in a set theme
+    def get_goals_by_theme(self, theme_title):
+        goals = self.get_all_active_goals().filter(theme__title=theme_title)
+        return goals
+
 
 class GoalTheme(TimeStampedFeature):
     """
         Defines the theme and the argument of a certain goal.
     """
-    title = models.CharField(max_length=60)
+    title = models.CharField(max_length=60, unique=True)
     icon = IconField()
     color = ColorField()
 
     def __unicode__(self):
-        return u'%s' % (self.titles)
+        return u'%s' % (self.title)
 
 
 class Goal(TimeStampedFeature):

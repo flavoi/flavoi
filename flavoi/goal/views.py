@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 
-from .models import Goal
+from .models import Goal, GoalTheme
 
 
 # My goals in all history
@@ -22,45 +22,24 @@ class AchievementsView(ListView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(AchievementsView, self).get_context_data(**kwargs)
-        # Add in a timestamp for the archive
-        context['current_year'] = date.today().strftime("%Y")
-        context['current_month'] = date.today().strftime("%m")
+        # Add in a timestamp for the goal
+        context['themes'] = GoalTheme.objects.all()
         context['history_link_class'] = 'current'
-        context['year_link_class'] = 'link'
-        context['month_link_class'] = 'link'
         return context
 
 
-# My goals in a set year
-class YearArchiveView(AchievementsView):
-    
+# My goals of a set theme
+class AchievementsThemeListView(AchievementsView):
     def get_queryset(self):
-        year = self.args[0]
-        return Goal.objects.get_year_archive(year)
+        theme = self.kwargs['theme']
+        return Goal.objects.get_goals_by_theme(theme)
 
     def get_context_data(self, **kwargs):
-        context = super(YearArchiveView, self).get_context_data(**kwargs)
+        # Call the base implementation first to get a context
+        context = super(AchievementsThemeListView, self).get_context_data(**kwargs)
+        context['this_link_class'] = self.kwargs['theme']
         context['history_link_class'] = 'link'
-        context['year_link_class'] = 'current'
-        context['month_link_class'] = 'link'
         return context
-
-
-# My goals in a set month
-class MonthArchiveView(AchievementsView):
-    
-    def get_queryset(self):
-        year = self.args[0]
-        month = self.args[1]
-        return Goal.objects.get_month_archive(year, month)
-
-    def get_context_data(self, **kwargs):
-        context = super(MonthArchiveView, self).get_context_data(**kwargs)
-        context['history_link_class'] = 'link'
-        context['year_link_class'] = 'link'
-        context['month_link_class'] = 'current'
-        return context
-
 
 # Get the whole content of a single goal 
 class AchievementsDetailView(DetailView):

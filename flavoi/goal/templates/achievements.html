@@ -11,8 +11,9 @@
 {% block nav_achievements %}
     <ul>
         <li><a href="{% url 'achievements' %}" title="all-history" class="{{ history_link_class }}">All History</a></li>
-        <li><a href="{% url 'year_archive' current_year %}" title="this-year" class="{{ year_link_class }}">This Year</a></li>
-        <li><a href="{% url 'month_archive' current_year current_month %}" title="this-month" class="{{ month_link_class }}">This Month</a></li>
+        {% for t in themes %}
+        <li><a href="{% url 'achievements_theme' t %}" title="t.title" class="{% ifequal t.title this_link_class %}current{% else %}link{% endifequal %}">{{ t }}</a></li>
+        {% endfor %}
     </ul>
 {% endblock %}
 
@@ -25,33 +26,19 @@
             {% if published_goals %}
                 {% for goal in published_goals %}
                     <h3 class="postTitle">
-                        {% ifequal goal.percentage 100 %}
-                            <i class="fa fa-diamond"></i>
-                        {% endifequal %}
-                        <a href="{% url 'achievement_detail' current_year current_month goal.pk %}">{{ goal.title }}</a>
+                        <a href="{% url 'achievement_detail' goal.pk %}">{{ goal.title }}</a>
                     </h3>
 
                     <p class="authorDate">
-                        <strong>{{ goal.theme.title }}</strong> |
+                        <strong style="color: {{ goal.theme.color}} ">{{ goal.theme.icon.as_html }} {{ goal.theme }}</strong> |
                         <strong>Created:</strong> {{ goal.created }} | 
                         <strong>Updated:</strong> {{ goal.modified }}
                     </p>
 
                     {{ goal.abstract|safe }}
 
-                    <div class="progress">
-                      <div class="progress-bar 
-                        {% ifequal goal.percentage 100 %}
-                            progress-bar-success
-                        {% else %}
-                            progress-bar-striped active 
-                        {% endifequal %}" role="progressbar" aria-valuenow="{{ goal.percentage }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ goal.percentage}}%;">
-                        <div class="content">{{ goal.percentage }}%</div>
-                      </div>
-                    </div>
-
                     <h4>
-                        <a href="{% url 'achievement_detail' current_year current_month goal.pk %}" title="read-more">read more ></a>
+                        <a href="{% url 'achievement_detail' goal.pk %}" title="read-more">read more ></a>
                     </h4>
 
                     <hr/>
