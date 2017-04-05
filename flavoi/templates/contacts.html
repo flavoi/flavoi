@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}contacts{% endblock %}
+
+{% block contacts %}current{% endblock %}
+
+{% block content %}
+  <article class="post" role="article" itemscope itemtype="http://schema.org/BlogPosting"><!-- .post start -->
+    <header><!-- header start -->
+      <h2 class="page-title" itemprop="headline">Contacts</h2>
+    </header><!-- header end -->
+    
+    <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
+      {% if primary_contacts %}
+        <h3>How to find me</h3>
+        <ul>
+          {% for prim in primary_contacts %}
+            <li> On
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-square-o fa-stack-2x"></i>
+                <i class="fa fa-{{ prim.icon }} fa-stack-1x"></i>
+              </span> 
+               <a title="{{ prim.icon }}" href="{{ prim.link }}">{{ prim.label|title }}</a></li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      {% if secondary_contacts %}
+        <h3>Or eventually...</h3>
+        <ul>
+          {% for seco in secondary_contacts %}
+            <li> {{ seco.description|capfirst }} <a title="{{ seco.icon }}" href="{{ seco.link }}">{{ seco.label|title }}</a></li>
+          {% endfor %}
+          <li> Say hello by <a title="email" href="mailto:{{ profile.email }}">email</a>!</li>
+        </ul>
+      {% endif %}
+    </section><!-- .post-content end -->
+  </article><!-- .post end -->
+{% endblock %}
