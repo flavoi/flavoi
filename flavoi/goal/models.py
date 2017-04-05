@@ -35,6 +35,11 @@ class GoalManager(models.QuerySet):
         return goals
 
 
+class GoalTag():
+    """
+        
+    """
+
 class Goal(TimeStampedModel):
     """
         Personal and current projects or achievements.

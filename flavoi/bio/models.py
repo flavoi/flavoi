@@ -24,8 +24,8 @@ class Bio(TimeStampedModel):
     """
     title = models.CharField(max_length=30)
     subtitle = models.CharField(max_length=100)
-    picture = models.ImageField(upload_to=settings.MEDIA_ROOT+'profile_pic/', blank=True)
-    cv = models.FileField(upload_to=settings.MEDIA_ROOT+'curriculum_vitae', blank=True)
+    picture = models.ImageField(upload_to='profile_pic/', blank=True)
+    cv = models.FileField(upload_to='curriculum_vitae', blank=True)
     job_content = models.TextField()
     hobby_content = models.TextField()
     email = models.EmailField()
