@@ -41,10 +41,10 @@ class AchievementsThemeListView(AchievementsView):
         context['history_link_class'] = 'link'
         return context
 
+
 # Get the whole content of a single goal 
 class AchievementsDetailView(DetailView):
     model = Goal
-    template_name = "achievements_details.html"
     context_object_name = 'published_goal_detail'
 
 
