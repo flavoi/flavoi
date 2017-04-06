@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
+from django.core.exceptions import ObjectDoesNotExist
 
 from .models import Goal, GoalTheme
 
@@ -42,11 +43,15 @@ class AchievementsThemeListView(AchievementsView):
         return context
 
 
-# Get the whole content of a single goal 
+# Get the content of a single goal 
 class AchievementsDetailView(DetailView):
     model = Goal
     context_object_name = 'published_goal_detail'
 
+    def get_queryset(self):
+        qs = super(AchievementsDetailView, self).get_queryset()
+        return qs.filter(published=True)
+        
 
 # Display an Achievement List page filtered by the search query.
 class AchievementsSearchView(AchievementsView):

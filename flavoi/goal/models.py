@@ -1,8 +1,10 @@
+
 from django.db import models
-from django.core.validators import MaxValueValidator
 from django.db.models.fields import PositiveIntegerField
 from django.db.models.query import QuerySet
 from django.conf import settings
+from django.utils import timezone
+from django.core.exceptions import ObjectDoesNotExist
 
 from ckeditor.fields import RichTextField
 from colorfield.fields import ColorField
@@ -18,30 +20,28 @@ class GoalManager(models.QuerySet):
         goals = self.filter(published=True).filter(bio__active=True)
         return goals
 
-    # Get the most recent goal
-    def current(self):
-        current_goal = self.get_all_active_goals().latest('modified')
-        return current_goal
-
     # Get the list of published goals from the most recent to the least 
     def history(self):
-        goals = self.get_all_active_goals().order_by('-modified')
-        return goals
-
-    # Get the list of published goals in the set year
-    def get_year_archive(self, year):
-        goals = self.get_all_active_goals().filter(created__year=year)
-        return goals
-
-    # Get the list of published goals in the set month
-    def get_month_archive(self, year, month):
-        goals = self.get_year_archive(year).filter(created__month=month)
+        goals = self.get_all_active_goals().order_by('-hot', '-publication_date')
         return goals
 
     # Get the list of published goals in a set theme
     def get_goals_by_theme(self, theme_title):
-        goals = self.get_all_active_goals().filter(theme__title=theme_title)
+        goals = self.history().filter(theme__title=theme_title)
         return goals
+
+    # Get the hottest goal
+    def get_hottest_goal(self):
+        goal = self.history().filter(hot=True).latest('publication_date')
+        return goal
+
+    # Get the most recent goal
+    def current(self):
+        try:
+            goal = self.get_hottest_goal()
+        except ObjectDoesNotExist:
+            goal = self.get_all_active_goals().latest('publication_date')
+        return goal
 
 
 class GoalTheme(TimeStampedFeature):
@@ -65,15 +65,21 @@ class Goal(TimeStampedFeature):
     abstract = RichTextField()
     description = RichTextField()
     published = models.BooleanField(default=False)
-    percentage = PositiveIntegerField(
-        default=1,
-        validators=[
-            MaxValueValidator(100),
-        ]
-     )
+    hot = models.BooleanField(default=False)
     theme = models.ForeignKey(GoalTheme, null=True, on_delete=models.SET_NULL)
+    publication_date = models.DateField(auto_now_add=True)
 
     objects = GoalManager.as_manager()
 
     def __unicode__(self):
         return u'%s' % self.title
+
+    # The following only changes pubblication date if published has been modified from False to True
+    def __init__(self, *args, **kwargs):
+        super(Goal, self).__init__(*args, **kwargs)
+        self.old_published = self.published
+
+    def save(self, *args, **kwargs):
+        if self.old_published != self.published and self.published:
+            self.publication_date = timezone.now()
+        super(Goal, self).save(*args, **kwargs)

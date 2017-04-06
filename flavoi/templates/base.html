@@ -21,7 +21,7 @@
   <!-- Viewport http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width" />
 
   <!--[if (lt IE 9) & (!IEMobile)]>
   <script src="themes/sunrise/js/libs/selectivizr-min.js"></script>
@@ -36,12 +36,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <!--[if lt IE 7 ]><script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script><script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script><![endif]-->
 
-  <!-- Load jQuery -->
+  <!-- Load Core Javascript -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="{{ STATIC_URL }}hipster-cards/js/hipster-cards.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-  <!-- Load CSS -->
-  <link rel="stylesheet" href="{{ STATIC_URL }}css/sunrise/style.css?m=1329303883" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Load Core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/sunrise/style.css" />
+  <link rel="stylesheet" href="{{ STATIC_URL }}hipster-cards/css/hipster-cards.css" />
+  <link rel="stylesheet" href="{{ STATIC_URL }}font-awesome-4.7.0/css/font-awesome.min.css">
   <link rel="shortcut icon" href="{{ STATIC_URL }}img/flavoi.ico" />
 
   <style type="text/css">
@@ -71,8 +75,7 @@
   {% block extrahead %}{% endblock %}
 </head>
 
-<body class="clearfix">
-
+<body>
   <header role="banner" id="header"><!-- #header start -->
 
     {% block header %}
@@ -119,11 +122,11 @@
   </header><!-- #header end -->
 
   <div id="fading" style="display:none"><!-- juicy fade in -->
-    <div id="content" class="clearfix"><!-- #content start -->
-      <div id="main" role="main" class="clearfix"><!-- #main start -->
+    <div class="wrapper">
+      <div class="container" style="max-width: 960px;">
         {% block content %}{% endblock %}
-      </div><!-- #main end -->
-    </div><!-- .content end -->
+      </div> <!-- end container -->
+    </div> <!-- end wrapper -->
   </div><!-- #fading end -->
 
   <footer role="contentinfo" class="clearfix" id="footer"><!-- #footer start -->
@@ -142,4 +145,6 @@
   });
 </script>
 
+{% block extrascript %}
+{% endblock extrascript %}
 </html>
