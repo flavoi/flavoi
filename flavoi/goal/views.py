@@ -1,4 +1,3 @@
-from datetime import date
 import operator
 
 from django.db.models import Q
@@ -7,7 +6,7 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.core.exceptions import ObjectDoesNotExist
 
-from .models import Goal, GoalTheme
+from .models import Goal, Theme
 
 
 # My goals in all history
@@ -24,7 +23,7 @@ class AchievementsView(ListView):
         # Call the base implementation first to get a context
         context = super(AchievementsView, self).get_context_data(**kwargs)
         # Add in a timestamp for the goal
-        context['themes'] = GoalTheme.objects.all()
+        context['themes'] = Theme.objects.all()
         context['history_link_class'] = 'current'
         return context
 

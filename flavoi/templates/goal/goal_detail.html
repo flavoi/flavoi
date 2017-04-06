@@ -30,6 +30,9 @@
         {{ published_goal_detail.abstract|safe }}
         {{ published_goal_detail.description|safe }}
 
+        {% for attachment in published_goal_detail.attachment_set.all %}
+           <p><strong><a href="{{ attachment.file.url }}">{{ attachment.label }}</a></strong></p>
+        {% endfor %}
         <hr/>
     </section><!-- .post-content end -->
     </article><!-- .post end -->

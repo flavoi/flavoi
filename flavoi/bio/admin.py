@@ -7,7 +7,6 @@ class BioAdmin(admin.ModelAdmin):
 
 class ContactAdmin(admin.ModelAdmin):
     list_display = ['label', 'link', 'primary']
-    prepopulated_fields = {"icon": ("label",)}
 
 # Register your models here.
 admin.site.register(Bio, BioAdmin)

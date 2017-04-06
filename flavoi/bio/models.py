@@ -5,6 +5,7 @@ from django.template.defaultfilters import slugify
 from django.conf import settings
 
 from ckeditor.fields import RichTextField
+from fontawesome.fields import IconField
 
 
 class TimeStampedModel(models.Model):
@@ -27,10 +28,10 @@ class Bio(TimeStampedModel):
     title = models.CharField(max_length=30)
     subtitle = models.CharField(max_length=100)
     picture = models.ImageField(upload_to='profile_pic/', blank=True)
-    cv = models.FileField(upload_to='curriculum_vitae', blank=True)
+    cv = models.FileField(upload_to='curriculum_vitae/', blank=True)
     job_content = RichTextField()
     hobby_content = RichTextField()
-    email = models.EmailField()
+    email = models.EmailField() # Deprecated
     active = models.BooleanField(default=True) 
     
     def __unicode__(self):
@@ -76,16 +77,11 @@ class Contact(Feature):
     description = models.TextField(max_length=255, blank=True)
     label = models.CharField(max_length=30)
     link = models.URLField()
-    icon = models.SlugField(max_length=30)
+    icon = IconField()    
     primary = models.BooleanField(default=True)
 
     def __unicode__(self):
         return u'%s' % (self.label)
-    
-    def save(self, *args, **kwargs):
-      if not self.icon:
-          self.icon = slugify(self.label)
-      super(Contact, self).save(*args, **kwargs)
 
 
 class Inspiration(Feature):

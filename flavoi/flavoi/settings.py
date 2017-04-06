@@ -62,7 +62,6 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     'storages',
     'ckeditor',
-    'colorfield',
     'fontawesome',
 )
 

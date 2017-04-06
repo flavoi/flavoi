@@ -1,12 +1,19 @@
 from django.contrib import admin
 
-from goal.models import Goal, GoalTheme
+from .models import Goal, Theme, Attachment
+
+
+class AttachmentInline(admin.TabularInline):
+    model = Attachment
+    fields = ('label', 'file')
+
 
 class GoalAdmin(admin.ModelAdmin):
     list_display = ['title', 'theme', 'published', 'hot']
+    inlines = [
+        AttachmentInline,
+    ]
 
-class GoalThemeAdmin(admin.ModelAdmin):
-    list_display = ['title', 'icon', 'color']
 
 admin.site.register(Goal, GoalAdmin)
-admin.site.register(GoalTheme, GoalThemeAdmin)
+admin.site.register(Theme)

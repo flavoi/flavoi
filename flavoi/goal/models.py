@@ -7,10 +7,8 @@ from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
 
 from ckeditor.fields import RichTextField
-from colorfield.fields import ColorField
-from fontawesome.fields import IconField
 
-from bio.models import TimeStampedFeature
+from bio.models import TimeStampedFeature, Feature
 
 
 class GoalManager(models.QuerySet):
@@ -44,13 +42,11 @@ class GoalManager(models.QuerySet):
         return goal
 
 
-class GoalTheme(TimeStampedFeature):
+class Theme(models.Model):
     """
-        Defines the theme and the argument of a certain goal.
+        Defines the theme and the argument of any goal.
     """
     title = models.CharField(max_length=60, unique=True)
-    icon = IconField()
-    color = ColorField()
 
     def __unicode__(self):
         return u'%s' % (self.title)
@@ -66,9 +62,9 @@ class Goal(TimeStampedFeature):
     description = RichTextField()
     published = models.BooleanField(default=False)
     hot = models.BooleanField(default=False)
-    theme = models.ForeignKey(GoalTheme, null=True, on_delete=models.SET_NULL)
+    theme = models.ForeignKey(Theme, null=True, on_delete=models.SET_NULL)
     publication_date = models.DateField(auto_now_add=True, null=True)
-    percentage = PositiveIntegerField()
+    percentage = PositiveIntegerField() # Deprecated
 
     objects = GoalManager.as_manager()
 
@@ -84,3 +80,17 @@ class Goal(TimeStampedFeature):
         if self.old_published != self.published and self.published:
             self.publication_date = timezone.now()
         super(Goal, self).save(*args, **kwargs)
+
+
+class Attachment(Feature):
+    """
+        Stores one or more files for a given goal.
+    """
+    label = models.CharField(max_length=60)
+    file = models.FileField(upload_to='media/attachments/')
+    goal = models.ForeignKey(Goal)
+
+    def save(self, *args, **kwargs):
+        if self.goal:
+            self.bio = self.goal.bio
+        super(Attachment, self).save(*args, **kwargs)
