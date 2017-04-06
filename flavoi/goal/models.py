@@ -67,7 +67,8 @@ class Goal(TimeStampedFeature):
     published = models.BooleanField(default=False)
     hot = models.BooleanField(default=False)
     theme = models.ForeignKey(GoalTheme, null=True, on_delete=models.SET_NULL)
-    publication_date = models.DateField(auto_now_add=True)
+    publication_date = models.DateField(auto_now_add=True, null=True)
+    percentage = PositiveIntegerField()
 
     objects = GoalManager.as_manager()
 
