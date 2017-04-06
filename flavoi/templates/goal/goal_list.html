@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}achievements{% endblock %}
+{% block title %}achievements{% endblock title %}
 
-{% block extralevel %}level-two{% endblock %}
-{% block achievements %}current parent{% endblock %}
+{% block extralevel %}level-two{% endblock extralevel %}
+{% block achievements %}current parent{% endblock achievements %}
 {% block nav_achievements %}
     <ul>
         <li><a href="{% url 'achievements' %}" title="all-history" class="{{ history_link_class }}">All History</a></li>
@@ -11,7 +11,7 @@
         <li><a href="{% url 'achievements_theme' t %}" title="t.title" class="{% ifequal t.title this_link_class %}current{% else %}link{% endifequal %}">{{ t }}</a></li>
         {% endfor %}
     </ul>
-{% endblock %}
+{% endblock nav_achievements %}
 
 {% block content %}
     {% if published_goals %}
@@ -60,7 +60,7 @@
     {% else %}
         <h4 class="text-center">There aren't any goals :(</h4>
     {% endif %}
-{% endblock %}
+{% endblock content %}
 
 {% block extrascript %}
 <script type="text/javascript">

@@ -27,8 +27,8 @@ class Bio(TimeStampedModel):
     """
     title = models.CharField(max_length=30)
     subtitle = models.CharField(max_length=100)
-    picture = models.ImageField(upload_to='profile_pic/', blank=True)
-    cv = models.FileField(upload_to='curriculum_vitae/', blank=True)
+    picture = models.ImageField(upload_to='media/bio/', blank=True)
+    cv = models.FileField(upload_to='media/bio/', blank=True)
     job_content = RichTextField()
     hobby_content = RichTextField()
     email = models.EmailField() # Deprecated
@@ -93,3 +93,17 @@ class Inspiration(Feature):
     
     def __unicode__(self):
         return u'%s' % (self.author)
+
+
+class Momenti(Feature):
+    """
+        A collection of the best moments of my life.
+    """
+    photo = models.ImageField(upload_to='media/momenti/')
+    caption = models.CharField(max_length=60)
+
+    def __unicode__(self):
+        return u'%s' % (self.caption)
+
+    class Meta:
+        verbose_name_plural = "momenti"
