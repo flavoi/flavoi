@@ -71,14 +71,14 @@ class TimeStampedFeature(TimeStampedModel):
 
 class Contact(Feature):
     """
-    A model that contains a bunch of helpful links.
-    If primary it will be displayed in the first section of the webpage.
+    The list of links that can be used to keep in touch.
+    If primary it will be highlighted.
     """
     description = models.TextField(max_length=255, blank=True)
     label = models.CharField(max_length=30)
     link = models.URLField()
-    icon = IconField()    
-    primary = models.BooleanField(default=True)
+    icon = IconField()
+    primary = models.BooleanField(default=False)
 
     def __unicode__(self):
         return u'%s' % (self.label)
