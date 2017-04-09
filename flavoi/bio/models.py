@@ -4,6 +4,8 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.conf import settings
 
+from ckeditor.fields import RichTextField
+
 
 class TimeStampedModel(models.Model):
     """
@@ -24,10 +26,10 @@ class Bio(TimeStampedModel):
     """
     title = models.CharField(max_length=30)
     subtitle = models.CharField(max_length=100)
-    picture = models.ImageField(upload_to=settings.MEDIA_ROOT+'profile_pic/', blank=True)
-    cv = models.FileField(upload_to=settings.MEDIA_ROOT+'curriculum_vitae', blank=True)
-    job_content = models.TextField()
-    hobby_content = models.TextField()
+    picture = models.ImageField(upload_to='media/bio/', blank=True)
+    cv = models.FileField(upload_to='media/bio/', blank=True)
+    job_content = RichTextField()
+    hobby_content = RichTextField()
     email = models.EmailField()
     active = models.BooleanField(default=True) 
     
@@ -40,7 +42,27 @@ class Feature(models.Model):
     This abstract class connect all the infos to the main 
     profile.
     """
-    bio = models.ForeignKey(Bio)
+    bio = models.ForeignKey(
+        Bio,
+        null=True,
+        on_delete=models.SET_NULL,
+        primary_key=False,
+    )
+    
+    class Meta:
+        abstract = True
+
+
+class TimeStampedFeature(TimeStampedModel):
+    """
+    This class is suited for features with a creation date.
+    """
+    bio = models.ForeignKey(
+        Bio,
+        null=True,
+        on_delete=models.SET_NULL,
+        primary_key=False,
+    )
     
     class Meta:
         abstract = True
@@ -48,22 +70,17 @@ class Feature(models.Model):
 
 class Contact(Feature):
     """
-    A model that contains a bunch of helpful links.
-    If primary it will be displayed in the first section of the webpage.
+    The list of links that can be used to keep in touch.
+    If primary it will be highlighted.
     """
     description = models.TextField(max_length=255, blank=True)
     label = models.CharField(max_length=30)
     link = models.URLField()
-    icon = models.SlugField(max_length=30)
-    primary = models.BooleanField(default=True)
+    icon = models.CharField(max_length=40)
+    primary = models.BooleanField(default=False)
 
     def __unicode__(self):
         return u'%s' % (self.label)
-    
-    def save(self, *args, **kwargs):
-      if not self.icon:
-          self.icon = slugify(self.label)
-      super(Contact, self).save(*args, **kwargs)
 
 
 class Inspiration(Feature):
@@ -75,3 +92,17 @@ class Inspiration(Feature):
     
     def __unicode__(self):
         return u'%s' % (self.author)
+
+
+class Momenti(Feature):
+    """
+        A collection of the best moments of my life.
+    """
+    photo = models.ImageField(upload_to='media/momenti/')
+    caption = models.CharField(max_length=60)
+
+    def __unicode__(self):
+        return u'%s' % (self.caption)
+
+    class Meta:
+        verbose_name_plural = "momenti"

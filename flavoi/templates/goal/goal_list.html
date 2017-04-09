@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}achievements{% endblock title %}
+
+{% block extralevel %}level-two{% endblock extralevel %}
+{% block achievements %}current parent{% endblock achievements %}
+{% block nav_achievements %}
+    <ul>
+        <li><a href="{% url 'achievements' %}" title="all-history" class="{{ history_link_class }}">All History</a></li>
+        {% for t in themes %}
+        <li><a href="{% url 'achievements_theme' t %}" title="t.title" class="{% ifequal t.title this_link_class %}current{% else %}link{% endifequal %}">{{ t }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock nav_achievements %}
+
+{% block content %}
+    {% if published_goals %}
+        <div class="row">
+        {% for goal in published_goals %}
+        <div class="card-box col-md-4 col-sm-6">
+            <div class="card">                            
+                <div class="content">
+                    {% if goal.hot %}
+                    <h6 class="category text-danger">
+                        <i class="fa fa-fire" data-toggle="tooltip" data-placement="top" title="relevant for {{ goal.theme }}"></i> Hot Story
+                    </h6>
+                    {% else %}
+                    <h6 class="category">
+                        {{ goal.theme }}
+                    </h6>
+                    {% endif %}
+                    <h4 class="title">
+                        <a href="{% url 'achievement_detail' goal.pk %}">{{ goal.title }}</a>
+                    </h4>
+                    <p class="description">{{ goal.abstract|safe }}</p>
+                </div>                                           
+            </div> <!-- end card -->
+        </div> <!-- end grid columns -->
+        {% endfor %}
+        </div> <!-- end grid row -->
+        {% if is_paginated %}
+            <div class="row">
+            <div class="text-center">
+            <div class="pagination">
+                <span class="page-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+                    <span class="page-current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+            </div>
+            </div>
+            </div>
+        {% endif %}
+    {% else %}
+        <h4 class="text-center">There aren't any goals :(</h4>
+    {% endif %}
+{% endblock content %}
+
+{% block extrascript %}
+<script type="text/javascript">
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+{% endblock extrascript %}

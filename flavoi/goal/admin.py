@@ -1,9 +1,19 @@
 from django.contrib import admin
 
-from flavoi.admin import RichModelAdmin
-from goal.models import Goal
+from .models import Goal, Theme, Attachment
 
-class GoalAdmin(RichModelAdmin):
-    list_display = ['title', 'percentage', 'published']
+
+class AttachmentInline(admin.TabularInline):
+    model = Attachment
+    fields = ('label', 'file')
+
+
+class GoalAdmin(admin.ModelAdmin):
+    list_display = ['title', 'theme', 'published', 'hot']
+    inlines = [
+        AttachmentInline,
+    ]
+
 
 admin.site.register(Goal, GoalAdmin)
+admin.site.register(Theme)

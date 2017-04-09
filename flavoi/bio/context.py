@@ -2,25 +2,30 @@
     Custom context processors for the page app.
     This script contains useful informations for every template.
 """
+from datetime import date
+
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 
-from datetime import date
-
-from .models import Bio, Inspiration
+from .models import Bio, Contact
 
 
-# Automatic copyright to the current year.
-def copyright(request):
-    START_YEAR = 2012
+def signature(request):
+    """ Automatic signature: FM YYYY-YYYY | social buttons """
+    START_YEAR = 2016
     this_year = date.today().year
     if START_YEAR != this_year:
         copy_year = "%s - %s" % (START_YEAR, this_year)
     else:
         copy_year = START_YEAR
-    return { 'copyright': copy_year }
+    signature = {
+        'copy': "FM %s" % copy_year,
+        'contacts': Contact.objects.filter(bio__active=True).order_by('-primary')
+    }
+    return signature 
 
-# The current Bio object is critical in many templates.
+
 def profile(request):
+    """ An active Bio must always be present """
     profile = get_object_or_404(Bio, active=True)
     return { 'profile': profile }

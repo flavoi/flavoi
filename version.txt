@@ -1,12 +1,22 @@
-update 2 v2.1 - 30/12/2016
+update 2, version 2.0.0 - 09/04/2017
+   - Introduced tags management and filters for goals
+   - Introduced cards as content preview in achievements page
+   - Introduced hot flag for important achievements
+   - Updated footer with social buttons
+   - Updated achievement ordering by publication date
+   - Updated font-awesome to release 4.7.0
+   - Updated ckeditor to release 5.2.1 
+   - Updated django to release 1.10
+   - Updated version log with details in version.txt
+   - Removed contacts page since it has been moved in the footer
    - Removed favourite hobby star since it is already included in hobby section
-   - Added version log in version.txt
+   - Removed achievement percentage and completion bar since it is redundant 
+     with respect to the publication flag
 
-update 1 v2.0 - 09/11/2015
-   - Added search field for every goal in the website
+update 1, version 1.1.0 - 09/11/2015
+   - Introduced search field to jump to any goals by a keyword
+   - Introduced dedicated achievements page with content section, pagination and permanent url
    - Updated styling for social icons
-   - Upgraded Achievemnts page with a standard structure, pagination and dedicated url
-   - Upgraded django to 1.9
-   - Updated styling for contrib.admin
+   - Updated django to release 1.9
 
-release v1.0 - 02/11/2014
+release, version 1.0.0 - 02/11/2014

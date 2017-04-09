@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}achievements{% endblock %}
+
+{% block extralevel %}level-one{% endblock %}
+{% block achievements %}current parent{% endblock %}
+{% block nav_achievements %}{% endblock %}
+
+{% block content %}
+    <article class="post" role="article" itemscope itemtype="http://schema.org/BlogPosting"><!-- .post start -->
+    <header><!-- header start -->
+        <h2 class="page-title" itemprop="headline">{{ published_goal_detail.title }}</h2>
+    </header><!-- header end -->
+    <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
+        <p>        
+            <span class="text-muted">
+                <i class="fa fa-tag" aria-hidden="true"></i>
+                {{ published_goal_detail.theme }}
+            </span>
+            | <span class="text-muted">
+                <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                {{ published_goal_detail.publication_date|date:"d/m/Y" }}
+            </span>
+            {% if published_goal_detail.hot %}
+            | <span class="text-danger">
+                <i class="fa fa-fire"></i> Hot Story
+            </span>
+            {% endif %}
+        </p>
+        {{ published_goal_detail.abstract|safe }}
+        {{ published_goal_detail.description|safe }}
+
+        {% for attachment in published_goal_detail.attachment_set.all %}
+           <p><strong><a href="{{ attachment.file.url }}">{{ attachment.label }}</a></strong></p>
+        {% endfor %}
+        <hr/>
+    </section><!-- .post-content end -->
+    </article><!-- .post end -->
+{% endblock %}

@@ -50,26 +50,25 @@ DEBUG = True
 # Applications
 # https://docs.djangoproject.com/en/1.7/ref/applications/
 
-DJANGO_APPS = (
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-)
+]
 
-THIRD_PARTY_APPS = (
-    'storages',
-    'ckeditor',
-)
-
-LOCAL_APPS = (
+PROJECT_APPS = [
     'bio',
     'goal',
-)
+]
 
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+ADDONS = [
+    'storages',
+]
+
+INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + ADDONS
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -81,9 +80,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'flavoi.urls'
+ROOT_URLCONF = 'config.urls'
 
-WSGI_APPLICATION = 'flavoi.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 ## Templates
 ## https://docs.djangoproject.com/en/1.9/ref/settings/#templates
@@ -91,16 +90,18 @@ WSGI_APPLICATION = 'flavoi.wsgi.application'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': (BASE_DIR.child('templates'),),
         'APP_DIRS': True,
+        'DIRS': (BASE_DIR.child('templates'),),
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.template.context_processors.static',
                 'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
-                'bio.context.signature',
+                'bio.context.copyright',
                 'bio.context.profile',
             ]
         },
@@ -132,6 +133,9 @@ USE_TZ = True
 # Amazon S3 support
 # http://aws.amazon.com/
 
+# CKEditor support
+# https://github.com/shaunsephton/django-ckeditor
+
 AWS_ACCESS_KEY_ID = get_secret('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = get_secret('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = get_secret('AWS_STORAGE_BUCKET_NAME')
@@ -146,8 +150,3 @@ MEDIA_URL = '//s3.amazonaws.com/%s/media/' % AWS_STORAGE_BUCKET_NAME
 STATIC_ROOT = "/%s/" % STATIC_S3_PATH
 STATIC_URL = '//s3.amazonaws.com/%s/static/' % AWS_STORAGE_BUCKET_NAME
 ADMIN_MEDIA_PREFIX = 'admin/'
-
-# Ckeditor support
-# https://github.com/django-ckeditor/django-ckeditor#installation
-
-CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'

@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
-{% block title %}inspirations{% endblock %}
+{% block title %}inspirations{% endblock title %}
 
-{% block inspirations %}current{% endblock %}
+{% block inspirations %}current{% endblock inspirations %}
 
 {% block content %}
 	<article class="post" role="article" itemscope itemtype="http://schema.org/BlogPosting"><!-- .post start -->
@@ -13,9 +13,9 @@
     {% for ins in inspirations %}
   	 <blockquote>
   	   {{ ins.quote }}
-  		<footer>-- {{ ins.author }}</footer>
+  		<footer>{{ ins.author }}</footer>
   	</blockquote>
   	{% endfor %}
   	</section><!-- .post-content end -->
 	</article><!-- .post end -->
-{% endblock %}
+{% endblock content %}

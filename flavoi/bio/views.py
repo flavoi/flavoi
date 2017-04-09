@@ -3,8 +3,9 @@ from django.views.generic import View, ListView, DetailView
 
 from django.conf import settings
 
-from .models import Inspiration, Contact
+from .models import Inspiration, Contact, Momenti
 from goal.models import Goal
+
 
 # My first class view, hi everyone!
 class GreetingView(View):
@@ -50,4 +51,12 @@ class ContactsView(ListView):
             'secondary_contacts': secondary_contacts,
         }
         return context
-    
+
+
+# This is me, and the most important people of my life
+class MomentiView(ListView):
+    model = Momenti
+    context_object_name = 'momenti'
+
+    def get_queryset(self):
+        return Momenti.objects.filter(bio__active=True)
