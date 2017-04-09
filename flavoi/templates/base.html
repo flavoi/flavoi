@@ -67,6 +67,7 @@
      -moz-transform: scale(1.1);
      -o-transform: scale(1.1);
      }
+
      .social {
          -webkit-transform: scale(0.8);
          /* Browser Variations: */
@@ -81,17 +82,7 @@
     /*
     Multicoloured Hover Variations
     */
-     
-     #social-fb:hover {
-         color: #3B5998;
-     }
-     #social-tw:hover {
-         color: #4099FF;
-     }
-     #social-gp:hover {
-         color: #d34836;
-     }
-     #social-em:hover {
+    #social-em:hover {
          color: #f39c12;
      }
   </style>
@@ -155,12 +146,12 @@
 
   <footer role="contentinfo" class="clearfix" id="footer"><!-- #footer start -->
     <div id="inner-footer" class="clearfix"><!-- #inner-footer start -->
-      <p>
-        <i class="fa fa-creative-commons"></i> FM {{ copyright }} |
-        <a href="https://www.facebook.com/bootsnipp"><i class="fa fa-facebook-square fa-2x social"></i></a>
-        <a href="https://twitter.com/bootsnipp"><i class="fa fa-linkedin-square fa-2x social"></i></a>
-        <a href="https://twitter.com/bootsnipp"><i class="fa fa-github-square fa-2x social"></i></a>
-        <a href="mailto:bootsnipp@gmail.com"><i id="social-em" class="fa fa-envelope-square fa-2x social"></i></a>
+      <p class="text-center">
+        <i class="fa fa-creative-commons"></i> {{ copy }} <br />
+        <a href="mailto:{{ profile.email }}"><i id="social-em" class="fa fa-envelope-square fa-2x social"></i></a>
+        {% for c in contacts %}
+          <a href="{{ c.link }}"><i class="fa {{ c.icon }}"></i></a>
+        {% endfor %}
       </p>
     </div><!-- #inner-footer end -->
   </footer><!-- #footer end -->
