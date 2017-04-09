@@ -12,7 +12,7 @@ from .models import Bio, Contact
 
 def signature(request):
     """ Automatic signature: FM YYYY-YYYY | social buttons """
-    START_YEAR = 2016
+    START_YEAR = 2012
     this_year = date.today().year
     if START_YEAR != this_year:
         copy_year = "%s - %s" % (START_YEAR, this_year)
