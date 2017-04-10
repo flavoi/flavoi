@@ -23,7 +23,7 @@ class AchievementsView(ListView):
         # Call the base implementation first to get a context
         context = super(AchievementsView, self).get_context_data(**kwargs)
         # Display used themes only
-        context['themes'] = Theme.objects.filter(goal__isnull=False).distinct()
+        context['themes'] = Theme.objects.filter(goal__isnull=False).filter(goal.published=True).distinct()
         context['history_link_class'] = 'current'
         return context
 
