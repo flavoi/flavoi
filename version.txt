@@ -1,4 +1,4 @@
-update 2, version 2.0.2 - 10/04/2017
+update 2, version 2.0.3 - 10/04/2017
    - Introduced tags management and filters for goals
    - Introduced cards as content preview in achievements page
    - Introduced hot flag for important achievements
