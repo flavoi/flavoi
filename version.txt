@@ -1,4 +1,4 @@
-update 2, version 2.0.3 - 10/04/2017
+update 2, version 2.0.2 - 22/04/2017
    - Introduced tags management and filters for goals
    - Introduced cards as content preview in achievements page
    - Introduced hot flag for important achievements
@@ -8,6 +8,7 @@ update 2, version 2.0.3 - 10/04/2017
    - Updated ckeditor to release 5.2.1 
    - Updated django to release 1.10
    - Updated version log with details in version.txt
+   - Updeade README with my vision of this website
    - Removed contacts page since it has been moved in the footer
    - Removed favourite hobby star since it is already included in hobby section
    - Removed achievement percentage and completion bar since it is redundant 
