@@ -54,8 +54,7 @@ class Theme(models.Model):
 
 class Goal(TimeStampedFeature):
     """
-        Personal and current projects or achievements.
-        To add: work in progress details.
+        Projects and achievements centered around a specific theme.
     """
     title = models.CharField(max_length=60)
     abstract = RichTextField()
@@ -64,7 +63,8 @@ class Goal(TimeStampedFeature):
     hot = models.BooleanField(default=False)
     theme = models.ForeignKey(Theme, null=True, on_delete=models.SET_NULL)
     publication_date = models.DateField(auto_now_add=True, null=True)
-    
+    slug = models.SlugField()
+
     objects = GoalManager.as_manager()
 
     def __unicode__(self):

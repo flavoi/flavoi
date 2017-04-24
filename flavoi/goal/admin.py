@@ -10,6 +10,7 @@ class AttachmentInline(admin.TabularInline):
 
 class GoalAdmin(admin.ModelAdmin):
     list_display = ['title', 'theme', 'published', 'hot']
+    prepopulated_fields = {"slug": ("title",)}
     inlines = [
         AttachmentInline,
     ]

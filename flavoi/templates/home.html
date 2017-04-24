@@ -20,7 +20,7 @@
       </p>
       <p>
         <strong><i class="fa fa-diamond fa-fw"></i> </a>My latest achievement: </strong>
-        <a href="{% url 'achievement_detail' current_goal.pk %}">{{ current_goal.title }}</a>.
+        <a href="{% url 'achievement_detail' current_goal.slug current_goal.pk %}">{{ current_goal.title }}</a>.
       </p>
       {% if profile.hobby_content %}
         <p>
