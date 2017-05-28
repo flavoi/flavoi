@@ -6,32 +6,56 @@
 
 {% block content %}
 <article class="post" role="article" itemscope itemtype="http://schema.org/BlogPosting"><!-- .post start -->
-    <header><!-- header start -->
-      <h2 class="page-title" itemprop="headline">Home</h2>
-    </header><!-- header end -->
     <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
-      <p style="text-align: center;">
-        {% if profile.picture %}
-          <img src="{{ profile.picture.url }}" alt="flavoi profile picture" width="940" height="390" title=""/>
-        {% endif %}
-      </p>
-      <p>
-        {{ profile.job_content|safe }}
-      </p>
-      <p>
-        <strong><i class="fa fa-diamond fa-fw"></i> </a>My latest achievement: </strong>
-        <a href="{% url 'achievement_detail' current_goal.slug current_goal.pk %}">{{ current_goal.title }}</a>.
-      </p>
-      {% if profile.hobby_content %}
-        <p>
-          {{ profile.hobby_content|safe }} 
-        </p>
+    <div class="text-center">
+      {% if profile.picture %}
+        <img src="{{ profile.picture.url }}" alt="flavoi profile picture" width="940" height="390" title=""/>
       {% endif %}
-      <hr/>
+      <div class="row">
+        <div class="card-box col-md-4 col-sm-4">
+            <div class="cardtext-center">
+              <div class="content">
+               <div class="price">
+                  <h2 class="title">5</h2>
+                  <p class="description text-center">Inspirations</p>
+                </div>
+              </div>
+          </div>
+        </div>
+         <div class="card-box col-md-4 col-sm-4">
+            <div class="cardtext-center">
+              <div class="content">
+               <div class="price">
+                  <h2 class="title">10</h2>
+                  <p class="description text-center">Momenti</p>
+                </div>
+              </div>
+          </div>
+        </div>
+         <div class="card-box col-md-4 col-sm-4">
+            <div class="cardtext-center">
+              <div class="content">
+               <div class="price">
+                  <h2 class="title">1</h2>
+                  <p class="description text-center">Ideas</p>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div> <!-- end grid row -->
+      <h3>About me</h3>
+      {% if profile.hobby_content %}
+        {{ profile.job_content|safe }}
+      {% endif %}
+      {% if profile.hobby_content %}
+        {{ profile.hobby_content|safe }}
+      {% endif %}
+      <hr />
+      <h3>My Portfolio</h3>
       {% if profile.cv %}
-        <h4>Professional skills?</h4>
         <p><a target="_blank" class="button" title="my curriculum vitae" href="{{ profile.cv.url }}">Download my Curriculum Vitae</a></p>
       {% endif %}
+    </div>
     </section><!-- .post-content end -->
   </article><!-- .post end -->
 {% endblock %}
