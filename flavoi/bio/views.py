@@ -24,6 +24,18 @@ class HomeView(ListView):
     def get_queryset(self):
         return Goal.objects.current()
 
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        reports = []
+        inspirations = ('inspirations', Inspiration.objects.all().count())
+        reports.append(inspirations)
+        momenti = ('momenti', Momenti.objects.all().count())
+        reports.append(momenti)
+        goals = ('ideas', Goal.objects.history().count())
+        reports.append(goals)
+        context['reports'] = reports
+        return context
+
 
 # This quotes are the way of life
 class InspirationsView(ListView):

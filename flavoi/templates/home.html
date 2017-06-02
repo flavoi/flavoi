@@ -13,36 +13,18 @@
       <div class="profile-header-img">
         <img class="img-circle" src="{{ profile.picture.url }}" />
       </div>
+      {% for r in reports %}
       <div class="card-box col-md-4 col-xs-4">
           <div class="cardtext-center">
             <div class="content">
              <div class="price">
-                <h2 class="title text-center">5</h2>
-                <h5 class="description text-center">Inspirations</h5>
+                <h2 class="title text-center">{{ r.1 }}</h2>
+                <h5 class="description text-center">{{ r.0|title }}</h5>
               </div>
             </div>
         </div>
       </div>
-      <div class="card-box col-md-4 col-xs-4">
-        <div class="cardtext-center">
-          <div class="content">
-           <div class="price">
-              <h2 class="title text-center">10</h2>
-              <h5 class="description text-center">Momenti</h5>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card-box col-md-4">
-        <div class="cardtext-center">
-          <div class="content">
-           <div class="price">
-              <h2 class="title text-center">1</h2>
-              <h5 class="description text-center">Ideas</h5>
-            </div>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div><!-- end profile container -->
   </div><!-- end profile row -->
 
