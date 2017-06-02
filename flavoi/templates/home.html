@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block extrahead %}{% endblock %}
+
 {% block title %}home{% endblock %}
 
 {% block home %}current{% endblock %}
@@ -7,12 +9,16 @@
 {% block content %}
 <article class="post" role="article" itemscope itemtype="http://schema.org/BlogPosting"><!-- .post start -->
     <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
-    <div class="text-center">
+
       {% if profile.picture %}
-        <img src="{{ profile.picture.url }}" alt="flavoi profile picture" width="940" height="390" title=""/>
+      <div class="photo-container" style="padding-top:25px;">
+        <img class="center-block" src="{{ profile.picture.url }}" alt="flavoi profile picture" width="940" height="390" title=""/>
+      </div>
       {% endif %}
+
+    <div class="text-center">
       <div class="row">
-        <div class="card-box col-md-4 col-sm-4">
+        <div class="card-box col-md-2 col-md-offset-3 col-xs-2 col-xs-offset-3">
             <div class="cardtext-center">
               <div class="content">
                <div class="price">
@@ -22,24 +28,24 @@
               </div>
           </div>
         </div>
-         <div class="card-box col-md-4 col-sm-4">
-            <div class="cardtext-center">
-              <div class="content">
-               <div class="price">
-                  <h2 class="title">10</h2>
-                  <p class="description text-center">Momenti</p>
-                </div>
+        <div class="card-box col-md-2 col-xs-2">
+          <div class="cardtext-center">
+            <div class="content">
+             <div class="price">
+                <h2 class="title">10</h2>
+                <p class="description text-center">Momenti</p>
               </div>
+            </div>
           </div>
         </div>
-         <div class="card-box col-md-4 col-sm-4">
-            <div class="cardtext-center">
-              <div class="content">
-               <div class="price">
-                  <h2 class="title">1</h2>
-                  <p class="description text-center">Ideas</p>
-                </div>
+        <div class="card-box col-md-2 col-xs-2">
+          <div class="cardtext-center">
+            <div class="content">
+             <div class="price">
+                <h2 class="title">1</h2>
+                <p class="description text-center">Ideas</p>
               </div>
+            </div>
           </div>
         </div>
       </div> <!-- end grid row -->
@@ -53,7 +59,9 @@
       <hr />
       <h3>My Portfolio</h3>
       {% if profile.cv %}
-        <p><a target="_blank" class="button" title="my curriculum vitae" href="{{ profile.cv.url }}">Download my Curriculum Vitae</a></p>
+        <div class="center-block" style="padding-bottom: 15px;">
+          <a target="_blank" class="button" title="my curriculum vitae" href="{{ profile.cv.url }}">Download my Curriculum Vitae</a>
+        </div>
       {% endif %}
     </div>
     </section><!-- .post-content end -->
