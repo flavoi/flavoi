@@ -1,3 +1,10 @@
+update 3, version 2.2.0 - 02/06/2017
+   - Introduced report in homepage
+   - Updated page names and icons
+   - Updated website font to Source Sans Pro
+   - Updated profile's photo frame
+   - Fixed search url
+
 update 2, version 2.1.2 - 24/04/2017
    - Introduced tags management and filters for goals
    - Introduced cards as content preview in achievements page
