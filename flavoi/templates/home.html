@@ -1,6 +1,31 @@
 {% extends 'base.html' %}
 
-{% block extrahead %}{% endblock %}
+{% block extrahead %}
+<style type="text/css">
+/**
+ * Profile image component
+ */
+.profile-header-container{
+    margin: 0 auto;
+    text-align: center;
+}
+
+.profile-header-img {
+    padding: 34px;
+}
+
+.profile-header-img > img.img-circle {
+    width: 220px;
+    height: 220px;
+    border: 2px solid #2CA8FF;
+}
+
+.profile-header {
+    margin-top: 0px;
+}
+
+</style>
+{% endblock %}
 
 {% block title %}home{% endblock %}
 
@@ -8,62 +33,71 @@
 
 {% block content %}
 <article class="post" role="article" itemscope itemtype="http://schema.org/BlogPosting"><!-- .post start -->
-    <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
 
-      {% if profile.picture %}
-      <div class="photo-container" style="padding-top:25px;">
-        <img class="center-block" src="{{ profile.picture.url }}" alt="flavoi profile picture" width="940" height="390" title=""/>
+  {% if profile.picture %}
+  <div class="row">
+    <div class="profile-header-container">   
+      <div class="profile-header-img">
+        <img class="center-block img-circle" src="{{ profile.picture.url }}" />
       </div>
-      {% endif %}
-
-    <div class="text-center">
+    </div> 
+  </div>
+  {% endif %}
+  
+  <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
       <div class="row">
-        <div class="card-box col-md-2 col-md-offset-3 col-xs-2 col-xs-offset-3">
+        <div class="card-box col-md-2 col-md-offset-3 col-xs-4">
             <div class="cardtext-center">
               <div class="content">
                <div class="price">
-                  <h2 class="title">5</h2>
+                  <h2 class="title text-center">5</h2>
                   <p class="description text-center">Inspirations</p>
                 </div>
               </div>
           </div>
         </div>
-        <div class="card-box col-md-2 col-xs-2">
+        <div class="card-box col-md-2 col-xs-4">
           <div class="cardtext-center">
             <div class="content">
              <div class="price">
-                <h2 class="title">10</h2>
+                <h2 class="title text-center">10</h2>
                 <p class="description text-center">Momenti</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="card-box col-md-2 col-xs-2">
+        <div class="card-box col-md-2 col-xs-4">
           <div class="cardtext-center">
             <div class="content">
              <div class="price">
-                <h2 class="title">1</h2>
+                <h2 class="title text-center">1</h2>
                 <p class="description text-center">Ideas</p>
               </div>
             </div>
           </div>
         </div>
       </div> <!-- end grid row -->
-      <h3>About me</h3>
-      {% if profile.hobby_content %}
-        {{ profile.job_content|safe }}
-      {% endif %}
-      {% if profile.hobby_content %}
-        {{ profile.hobby_content|safe }}
-      {% endif %}
       <hr />
-      <h3>My Portfolio</h3>
-      {% if profile.cv %}
-        <div class="center-block" style="padding-bottom: 15px;">
-          <a target="_blank" class="button" title="my curriculum vitae" href="{{ profile.cv.url }}">Download my Curriculum Vitae</a>
-        </div>
-      {% endif %}
-    </div>
+      <div class="text-center">
+        <h3>About me</h3>
+        <p class="lead text-center">
+        {% if profile.hobby_content %}
+          {{ profile.job_content|striptags }}
+        {% endif %}
+        </p>
+        <p class="lead text-center">
+        {% if profile.hobby_content %}
+          {{ profile.hobby_content|striptags }}
+        {% endif %}
+        </p>
+        <hr />
+        <h3>My Portfolio</h3>
+        {% if profile.cv %}
+          <div class="center-block" style="padding-bottom: 15px;">
+            <a target="_blank" class="button" title="my curriculum vitae" href="{{ profile.cv.url }}">Download my Curriculum Vitae</a>
+          </div>
+        {% endif %}
+      </div><!-- end text center -->
     </section><!-- .post-content end -->
   </article><!-- .post end -->
 {% endblock %}
