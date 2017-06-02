@@ -38,54 +38,13 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="{{ STATIC_URL }}css/sunrise/style.css" />
   <link rel="stylesheet" href="{{ STATIC_URL }}hipster-cards/css/hipster-cards.css" />
+  
+  <!-- Font and icons -->
   <link rel="stylesheet" href="{{ STATIC_URL }}font-awesome-4.7.0/css/font-awesome.min.css">
-
-  <style type="text/css">
-    ::-webkit-selection {
-      background: #ccf2ff;
-      color: #666666;
-      text-shadow: none;
-    }
-    ::-moz-selection {
-      background: #ccf2ff;
-      color: #666666;
-      text-shadow: none;
-    }
-    ::selection {
-      background: #ccf2ff;
-      color: #666666;
-      text-shadow: none;
-    }
-    @media screen and (max-width: 600px) {
-      .wide-only {
-        visibility: hidden;
-      }
-    }
-
-  .social:hover {
-   -webkit-transform: scale(1.1);
-   -moz-transform: scale(1.1);
-   -o-transform: scale(1.1);
-   }
-
- .social {
-     -webkit-transform: scale(0.8);
-     /* Browser Variations: */
-     
-     -moz-transform: scale(0.8);
-     -o-transform: scale(0.8);
-     -webkit-transition-duration: 0.5s;
-     -moz-transition-duration: 0.5s;
-     -o-transition-duration: 0.5s;
- }
-
-  /*
-  Multicoloured Hover Variations
-  */
-  #social-em:hover {
-       color: #f39c12;
-   }
-  </style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+  
+  <!-- Customizations -->
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/flavoi.css" />
 
   {% block extrahead %}{% endblock %}
 </head>
@@ -113,10 +72,10 @@
         </div>
         
         <!-- Title -->
-        <h1><a href="{% url 'home' %}" title="{{ profile.name|title }}">Hi, I'm {{ profile.title|title }}</a></h1>      
+        <h1><a href="{% url 'home' %}" title="{{ profile.name|title }}">Hi, I'm {{ profile.name|title }}</a></h1>      
 
         <!-- Subtitle -->
-        <p>{{ profile.subtitle }}.</p>
+        <p>{{ profile.title|capfirst }}.</p>
       </div><!-- #inner-header end -->  
 
       <!-- navigation -->

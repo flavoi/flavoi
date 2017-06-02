@@ -24,13 +24,13 @@ class Bio(TimeStampedModel):
     A model that report the author life, hobbies and 
     contacts.
     """
-    title = models.CharField(max_length=30)
-    subtitle = models.CharField(max_length=100)
+    name = models.CharField(max_length=30)
+    surname = models.CharField(max_length=30)
+    title = models.CharField(max_length=100)
     picture = models.ImageField(upload_to='media/bio/', blank=True)
     cv = models.FileField(upload_to='media/bio/', blank=True)
     job_content = models.TextField()
     hobby_content = models.TextField()
-    email = models.EmailField()
     active = models.BooleanField(default=True) 
     
     def __unicode__(self):
