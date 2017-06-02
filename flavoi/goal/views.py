@@ -56,19 +56,18 @@ class AchievementsDetailView(DetailView):
 class AchievementsSearchView(AchievementsView):
 
     def get_queryset(self):
-        result = super(AchievementsView, self).get_queryset()
-        result = result.get_all_active_goals() # active goals only, even if the query is empty
-        query = self.request.GET.get('q')
+        results = super(AchievementsSearchView, self).get_queryset()
+        results = results.history() # active goals only, even if the query is empty
+        query = self.request.GET.get('q') 
         if query:
             query_list = query.split()
-            print query_list
-            result = result.filter(
+            results = results.filter(
                 reduce(operator.and_,
                        (Q(title__icontains=q) for q in query_list)) |
                 reduce(operator.and_,
                        (Q(abstract__icontains=q) for q in query_list))
             )
-        return result
+        return results
 
     def get_context_data(self, **kwargs):
         context = super(AchievementsSearchView, self).get_context_data(**kwargs)
