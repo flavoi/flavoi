@@ -34,7 +34,7 @@ class Bio(TimeStampedModel):
     active = models.BooleanField(default=True) 
     
     def __unicode__(self):
-        return u'%s' % (self.title)
+        return u'%s' % (self.name)
 
 
 class Feature(models.Model):
