@@ -1,4 +1,4 @@
-update 3, version 2.2.0 - 02/06/2017
+update 3, version 2.2.1 - 05/06/2017
    - Introduced report in homepage
    - Updated page names and icons
    - Updated website font to Source Sans Pro
