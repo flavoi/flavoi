@@ -16,7 +16,7 @@
 {% block content %}
     {% if published_goals %}
         {% for goal in published_goals %}
-        <div class="card-box col-md-4 col-xs-6">
+        <div class="card-box col-md-4 col-sm-4 col-xs-12">
             <div class="card">
                 <div class="content">
                     {% if goal.hot %}
@@ -36,8 +36,7 @@
             </div> <!-- end card -->
         </div> <!-- end grid columns -->
         {% if forloop.counter0 == 2 %}
-            <!-- Clear row every 3 cards -->
-            <div class="clearfix"></div>
+        <div class="clearfix"></div>
         {% endif %}
         {% endfor %}
         {% if is_paginated %}
