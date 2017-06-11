@@ -1,9 +1,11 @@
-update 3, version 2.2.1 - 05/06/2017
+
+update 3, version 2.2.2 - 11/06/2017
    - Introduced report in homepage
    - Updated page names and icons
    - Updated website font to Source Sans Pro
    - Updated profile's photo frame
-   - Fixed search url
+   - Fixed a problem that caused 404 while searching from search box
+   - Fixed a problem that caused some goal cards to create too much horizontal padding
 
 update 2, version 2.1.2 - 24/04/2017
    - Introduced tags management and filters for goals
