@@ -1,6 +1,6 @@
 BeautifulSoup==3.2.1
 boto==2.46.1
-Django==1.10
+Django==1.11.3
 django-ckeditor==5.2.1
 django-colorfield==0.1.12
 django-fontawesome==0.3.1
