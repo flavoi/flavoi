@@ -11,9 +11,10 @@
         letter-spacing: -.02em;
         font-weight: 700;
         font-style: normal;
-        font-size: 36px;
+        font-size: 40px;
         margin-top: 10px;
         margin-left: -2.5px;
+        margin-bottom: 7px;
         line-height: 1.04;
         letter-spacing: -.028em;
     }
@@ -26,8 +27,10 @@
         font-style: normal;
         font-size: 24px;
         margin-left: -1.69px;
+        margin-top: 10px;
         line-height: 1.22;
         letter-spacing: -.022em;
+        color: rgba(0,0,0,.44);
     }
 
     .content p, li {
@@ -49,32 +52,39 @@
 
 {% block content %}
 <div class="row">
+    <!--
+    <div class="col-md-2">        
+        
+    </div>
+    -->
     <div class="col-md-10 col-md-offset-1">
-        <article class="post" role="article" itemscope itemtype="http://schema.org/BlogPosting"><!-- .post start -->
-            <header><!-- header start -->
-                <h2 class="page-title" itemprop="headline">{{ published_goal_detail.title }}</h2>
-            </header><!-- header end -->
-            <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
-                <p>        
-                    <span class="text-muted">
-                        <i class="fa fa-tag" aria-hidden="true"></i>
-                        {{ published_goal_detail.theme }}
-                    </span>
-                    | <span class="text-muted">
-                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                        {{ published_goal_detail.publication_date|date:"d/m/Y" }}
-                    </span>
-                    {% if published_goal_detail.hot %}
-                    | <span class="text-danger">
+        <article class="post" role="article" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <h1 class="page-title" itemprop="headline">
+                {{ published_goal_detail.title }}
+            </h1>
+
+            <div class="text-muted">
+                <i class="fa fa-tag" aria-hidden="true"></i>
+                {{ published_goal_detail.theme }} &raquo;
+                <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                {{ published_goal_detail.publication_date|date:"d/m/Y" }} &raquo; 
+                {% if published_goal_detail.hot %}
+                    <span class="text-danger">
                         <i class="fa fa-fire"></i> Hot Story
                     </span>
-                    {% endif %}
-                </p>
-                
-                <div class="subtitle">                
-                    {{ published_goal_detail.abstract|safe }}
-                </div>
-                
+                {% endif %}
+            </div>
+
+            <div class="subtitle">                
+                {{ published_goal_detail.abstract|safe }}
+            </div>        
+            
+
+            <section class="post-content clearfix" itemprop="articleBody">
+                                    
+                <img src="{{ published_goal_detail.picture.url }}" class="img-responsive" style="max-width: 100%" />
+
                 <div class="content">
                     {{ published_goal_detail.description|safe }}
                     <p>
@@ -83,6 +93,7 @@
                         {% endfor %}
                     </p>
                 </div>
+
                 <hr/>
             </section><!-- .post-content end -->
         </article><!-- .post end -->
