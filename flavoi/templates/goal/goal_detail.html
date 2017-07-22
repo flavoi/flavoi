@@ -4,7 +4,6 @@
 
 {% block extrahead %}
 <style type="text/css">
-
     .page-title {
         --x-height-multiplier: 0.363;
         --baseline-multiplier: 0.157;
@@ -17,6 +16,7 @@
         margin-bottom: 7px;
         line-height: 1.04;
         letter-spacing: -.028em;
+        text-align: left;
     }
 
     .subtitle p {
@@ -31,6 +31,7 @@
         line-height: 1.22;
         letter-spacing: -.022em;
         color: rgba(0,0,0,.44);
+        text-align: left;
     }
 
     .content p, li {
@@ -39,11 +40,11 @@
     letter-spacing: .01rem;
     font-weight: 400;
     font-style: normal;
-    font-size: 19px;
+    font-size: 20px;
     line-height: 1.58;
     letter-spacing: -.003em;
+    text-align: left;
     }
-
 </style>
 {% endblock extrahead %}
 
@@ -52,11 +53,7 @@
 
 {% block content %}
 <div class="row">
-    <!--
-    <div class="col-md-2">        
-        
-    </div>
-    -->
+
     <div class="col-md-10 col-md-offset-1">
         <article class="post" role="article" itemscope itemtype="http://schema.org/BlogPosting">
 
@@ -66,10 +63,11 @@
 
             <div class="text-muted">
                 <i class="fa fa-tag" aria-hidden="true"></i>
-                {{ published_goal_detail.theme }} &raquo;
-                <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                {{ published_goal_detail.publication_date|date:"d/m/Y" }} &raquo; 
+                {{ published_goal_detail.theme }}
+                &raquo; <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                {{ published_goal_detail.publication_date|date:"d/m/Y" }}  
                 {% if published_goal_detail.hot %}
+                    &raquo; 
                     <span class="text-danger">
                         <i class="fa fa-fire"></i> Hot Story
                     </span>
@@ -82,8 +80,10 @@
             
 
             <section class="post-content clearfix" itemprop="articleBody">
-                                    
-                <img src="{{ published_goal_detail.picture.url }}" class="img-responsive" style="max-width: 100%" />
+                
+                {% if published_goal_detail.picture %}
+                    <img src="{{ published_goal_detail.picture.url }}" class="img-responsive" style="max-width: 100%" />
+                {% endif %}
 
                 <div class="content">
                     {{ published_goal_detail.description|safe }}

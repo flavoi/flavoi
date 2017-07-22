@@ -5,6 +5,7 @@
 {% block home %}current{% endblock %}
 
 {% block content %}
+<div class="col-md-10 col-md-offset-1">
 <article class="post" role="article" itemscope itemtype="http://schema.org/BlogPosting"><!-- .post start -->
 
   {% if profile.picture %}
@@ -31,20 +32,19 @@
   {% endif %}
   
   <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
-    <p class="text-center">
-    {% if profile.job_content %}
-      {{ profile.job_content|striptags }}
-    {% endif %}
-    </p>
-    <p class="text-center">
-    {% if profile.hobby_content %}
-      {{ profile.hobby_content|striptags }}
-    {% endif %}
-    </p>
-    </section><!-- .post-content end -->
+
+      {% if profile.job_content %}
+        <p class="text-center">{{ profile.job_content|striptags }}</p>
+      {% endif %}
+      
+      {% if profile.hobby_content %}
+        <p class="text-center">{{ profile.hobby_content|striptags }}</p>
+      {% endif %}
+
+  </section><!-- .post-content end -->
 
   <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
-  <div class="col-md-4 col-md-offset-4 text-center"> 
+  <div class="col-md-6 col-md-offset-3 text-center"> 
     <h3>My Portfolio</h3>
     {% if profile.cv %}
     <div class="control-group">
@@ -55,4 +55,5 @@
   </section>
 
   </article><!-- .post end -->
+</div>
 {% endblock %}
