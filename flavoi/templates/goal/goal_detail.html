@@ -1,41 +1,91 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ published_goal_detail.title}}{% endblock %}
+{% block title %}{{ published_goal_detail.title}}{% endblock title %}
 
-{% block extralevel %}level-one{% endblock %}
-{% block achievements %}current parent{% endblock %}
-{% block nav_achievements %}{% endblock %}
+{% block extrahead %}
+<style type="text/css">
+
+    .page-title {
+        --x-height-multiplier: 0.363;
+        --baseline-multiplier: 0.157;
+        letter-spacing: -.02em;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 36px;
+        margin-top: 10px;
+        margin-left: -2.5px;
+        line-height: 1.04;
+        letter-spacing: -.028em;
+    }
+
+    .subtitle p {
+        --x-height-multiplier: 0.363;
+        --baseline-multiplier: 0.157;
+        letter-spacing: -.02em;
+        font-weight: 300;
+        font-style: normal;
+        font-size: 24px;
+        margin-left: -1.69px;
+        line-height: 1.22;
+        letter-spacing: -.022em;
+    }
+
+    .content p, li {
+    --x-height-multiplier: 0.35;
+    --baseline-multiplier: 0.179;
+    letter-spacing: .01rem;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 19px;
+    line-height: 1.58;
+    letter-spacing: -.003em;
+    }
+
+</style>
+{% endblock extrahead %}
+
+{% block subtitle %}{% endblock subtitle %}
+{% block navigation %}{% endblock navigation %}
 
 {% block content %}
-    <article class="post" role="article" itemscope itemtype="http://schema.org/BlogPosting"><!-- .post start -->
-    <header><!-- header start -->
-        <h2 class="page-title" itemprop="headline">{{ published_goal_detail.title }}</h2>
-    </header><!-- header end -->
-    <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
-        <p>        
-            <span class="text-muted">
-                <i class="fa fa-tag" aria-hidden="true"></i>
-                {{ published_goal_detail.theme }}
-            </span>
-            | <span class="text-muted">
-                <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                {{ published_goal_detail.publication_date|date:"d/m/Y" }}
-            </span>
-            {% if published_goal_detail.hot %}
-            | <span class="text-danger">
-                <i class="fa fa-fire"></i> Hot Story
-            </span>
-            {% endif %}
-        </p>
-        
-        {{ published_goal_detail.abstract|safe }}
-        {{ published_goal_detail.description|safe }}
-
-        {% for attachment in published_goal_detail.attachment_set.all %}
-           <strong><a href="{{ attachment.file.url }}">{{ attachment.label }}</a></strong><br />
-        {% endfor %}
-
-        <hr/>
-    </section><!-- .post-content end -->
-    </article><!-- .post end -->
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <article class="post" role="article" itemscope itemtype="http://schema.org/BlogPosting"><!-- .post start -->
+            <header><!-- header start -->
+                <h2 class="page-title" itemprop="headline">{{ published_goal_detail.title }}</h2>
+            </header><!-- header end -->
+            <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
+                <p>        
+                    <span class="text-muted">
+                        <i class="fa fa-tag" aria-hidden="true"></i>
+                        {{ published_goal_detail.theme }}
+                    </span>
+                    | <span class="text-muted">
+                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                        {{ published_goal_detail.publication_date|date:"d/m/Y" }}
+                    </span>
+                    {% if published_goal_detail.hot %}
+                    | <span class="text-danger">
+                        <i class="fa fa-fire"></i> Hot Story
+                    </span>
+                    {% endif %}
+                </p>
+                
+                <div class="subtitle">                
+                    {{ published_goal_detail.abstract|safe }}
+                </div>
+                
+                <div class="content">
+                    {{ published_goal_detail.description|safe }}
+                    <p>
+                        {% for attachment in published_goal_detail.attachment_set.all %}
+                            <a href="{{ attachment.file.url }}">{{ attachment.label }}</a><br />
+                        {% endfor %}
+                    </p>
+                </div>
+                <hr/>
+            </section><!-- .post-content end -->
+        </article><!-- .post end -->
+    </div>
+</div>
 {% endblock %}

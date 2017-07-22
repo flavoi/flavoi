@@ -3,7 +3,7 @@ from django.contrib import admin
 from bio.models import Bio, Contact, Inspiration, Momenti
 
 class BioAdmin(admin.ModelAdmin):
-    list_display = ['title', 'name', 'surname', 'active']
+    list_display = ['name', 'active']
 
 class ContactAdmin(admin.ModelAdmin):
     list_display = ['label', 'link', 'primary']
