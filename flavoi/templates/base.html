@@ -74,12 +74,14 @@
         </div>
         {% endblock search %}
 
-        <!-- Title -->
-        <h1><a href="{% url 'home' %}" title="{{ profile.name|title }}">Hi, I'm {{ profile.name|title }}</a></h1>      
+        {% block titlepage %}
+        <h1>
+          <a href="{% url 'home' %}" title="{{ profile.name|title }}">Hi, I'm {{ profile.name|title }}</a>
+        </h1>      
+        {% endblock titlepage %}
 
         {% block subtitle %}
-        <!-- Subtitle -->
-        <p>{{ profile.title|capfirst }}.</p>
+          <p>{{ profile.title|capfirst }}.</p>
         {% endblock subtitle %}
 
       </div><!-- #inner-header end -->  

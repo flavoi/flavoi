@@ -33,7 +33,7 @@
         text-align: left;
     }
 
-    .content p, li {
+    .content p, .content li {
     --x-height-multiplier: 0.35;
     --baseline-multiplier: 0.179;
     letter-spacing: .01rem;
@@ -46,7 +46,7 @@
 </style>
 {% endblock extrahead %}
 
-{% block achievements %}current{% endblock %}
+{% block achievements %}current{% endblock achievements %}
 
 {% block content %}
 <div class="row">
