@@ -1,6 +1,7 @@
 # Secrets
-flavoi/flavoi.db
-flavoi/flavoi.json
+flavoi.db
+bio.json
+goal.json
 secrets.json
  
 # Python bytecode
