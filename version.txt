@@ -1,5 +1,6 @@
 update 5, version 2.3.3 - xx/xx/2017
    - Introduced dedicated stylesheet for ideas' posts
+   - Introduced cards with photo for ideas' posts
    - Updated ckeditor for improved compatibility with django
    - Updated styles for ideas' attachements
    - Fixed pagination position to the bottom of the page 
