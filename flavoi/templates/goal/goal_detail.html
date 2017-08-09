@@ -45,11 +45,11 @@
 
                 <div class="content">
                     {{ published_goal_detail.description|safe }}
-                    <p>
                         {% for attachment in published_goal_detail.attachment_set.all %}
-                            <a href="{{ attachment.file.url }}">{{ attachment.label }}</a><br />
+                        <a target="_blank" class="button" href="{{ attachment.file.url }}">
+                            <i class="fa fa-download fa-fw"></i> {{ attachment.label|capfirst }}
+                        </a>
                         {% endfor %}
-                    </p>
                 </div>
 
                 <hr/>
