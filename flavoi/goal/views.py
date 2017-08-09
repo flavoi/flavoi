@@ -14,7 +14,7 @@ class AchievementsView(ListView):
     model = Goal
     template_name = "achievements.html"
     context_object_name = 'published_goals'
-    paginate_by = 5
+    paginate_by = 6
 
     def get_queryset(self):
         return Goal.objects.history()

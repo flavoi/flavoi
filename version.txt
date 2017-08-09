@@ -1,3 +1,7 @@
+update 5, version 2.3.3 - xx/xx/2017
+   - Updated ckeditor for improved compatibility with django
+   - Fixed pagination position to the bottom of the page 
+
 update 4, version 2.3.2 - 22/07/2017
    - Updated text styles in ideas' page for better readability
    - Added dedicated picture field for every idea
