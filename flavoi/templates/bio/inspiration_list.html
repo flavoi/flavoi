@@ -5,14 +5,12 @@
 {% block inspirations %}current{% endblock inspirations %}
 
 {% block content %}
-	<article class="post" role="article" itemscope itemtype="http://schema.org/BlogPosting"><!-- .post start -->
-  	<section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
-    {% for ins in inspirations %}
-  	 <blockquote>
-  	   {{ ins.quote }}
-  		<footer>{{ ins.author }}</footer>
-  	</blockquote>
-  	{% endfor %}
-  	</section><!-- .post-content end -->
-	</article><!-- .post end -->
+
+  {% for ins in inspirations %}
+    <blockquote>
+        {{ ins.quote }}
+      <footer>{{ ins.author }}</footer>
+    </blockquote>
+  {% endfor %}
+
 {% endblock content %}
