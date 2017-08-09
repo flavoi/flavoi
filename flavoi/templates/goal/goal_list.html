@@ -18,6 +18,18 @@
         {% for goal in published_goals %}
         <div class="card-box col-md-4 col-sm-4 col-xs-12">
             <div class="card">
+                {% if goal.picture %}
+                <div class="header" style="background-image: url({{ goal.picture.url }}); background-size: cover; background-position: center center;">
+                    <img src="{{ goal.picture.url }}">
+                    <div class="filter"></div>
+
+                    <div class="actions">
+                        <a href="{% url 'achievement_detail' goal.slug goal.pk %}" class="btn btn-fill btn-neutral btn-modern">
+                            Read Article
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
                 <div class="content">
                     {% if goal.hot %}
                     <h6 class="category text-danger">
