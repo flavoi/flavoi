@@ -3,47 +3,8 @@
 {% block title %}{{ published_goal_detail.title}}{% endblock title %}
 
 {% block extrahead %}
-<style type="text/css">
-    .page-title {
-        --x-height-multiplier: 0.363;
-        --baseline-multiplier: 0.157;
-        letter-spacing: -.02em;
-        font-style: normal;
-        font-weight: 300;
-        font-size: 40px;
-        margin-top: 10px;
-        margin-left: -2.5px;
-        margin-bottom: 7px;
-        line-height: 1.04;
-        letter-spacing: -.028em;
-        text-align: left;
-    }
-
-    .subtitle p {
-        --x-height-multiplier: 0.363;
-        --baseline-multiplier: 0.157;
-        letter-spacing: -.02em;
-        font-style: normal;
-        font-size: 24px;
-        margin-left: -1.69px;
-        margin-top: 10px;
-        line-height: 1.22;
-        letter-spacing: -.022em;
-        color: rgba(0,0,0,.44);
-        text-align: left;
-    }
-
-    .content p, .content li {
-    --x-height-multiplier: 0.35;
-    --baseline-multiplier: 0.179;
-    letter-spacing: .01rem;
-    font-style: normal;
-    font-size: 20px;
-    line-height: 1.58;
-    letter-spacing: -.003em;
-    text-align: left;
-    }
-</style>
+<!-- Ideas' specific styles -->
+<link rel="stylesheet" href="{{ STATIC_URL }}css/ideas.css" />
 {% endblock extrahead %}
 
 {% block achievements %}current{% endblock achievements %}
