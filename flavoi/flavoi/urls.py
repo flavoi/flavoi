@@ -6,5 +6,5 @@ admin.autodiscover()
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('bio.urls')),
-    url(r'^ideas/', include('goal.urls')),
+    url(r'^blog/', include('goal.urls')),
 ]

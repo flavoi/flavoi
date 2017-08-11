@@ -1,86 +1,53 @@
 {% extends 'base.html' %}
 
-{% block title %}ideas{% endblock title %}
-
-{% block extralevel %}level-two{% endblock extralevel %}
-{% block achievements %}current parent{% endblock achievements %}
-{% block nav_achievements %}
-    <ul>
-        <li><a href="{% url 'achievements' %}" title="all-history" class="{{ history_link_class }}">All History</a></li>
-        {% for t in themes %}
-        <li><a href="{% url 'achievements_theme' t %}" title="t.title" class="{% ifequal t.title this_link_class %}current{% else %}link{% endifequal %}">{{ t }}</a></li>
-        {% endfor %}
-    </ul>
-{% endblock nav_achievements %}
-
 {% block content %}
-    {% if published_goals %}
-        {% for goal in published_goals %}
-        <div class="card-box col-md-4 col-sm-4 col-xs-12">
-            <div class="card">
-                {% if goal.picture %}
-                <div class="header" style="background-image: url({{ goal.picture.url }}); background-size: cover; background-position: center center;">
-                    <img src="{{ goal.picture.url }}">
-                    <div class="filter"></div>
-
-                    <div class="actions">
-                        <a href="{% url 'achievement_detail' goal.slug goal.pk %}" class="btn btn-fill btn-neutral btn-modern">
-                            Read Article
-                        </a>
+<div class="blog-2 section section-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <h2 class="title">Latest Blogposts</h2>
+                        <br>
+                        {% if published_goals %}
+                        <div class="row">
+                            {% for goal in published_goals %}
+                            <div class="col-md-4">
+                                <div class="card card-blog">
+                                    <div class="card-image">
+                                        <a href="{% url 'achievement_detail' goal.slug goal.pk %}">
+                                            {% if goal.picture %}
+                                                <img class="img img-raised" src="{{ goal.picture.url }}">
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                                    <div class="card-block">
+                                        <h6 class="card-category text-info">{{ goal.theme }}</h6>
+                                        <h5 class="card-title">
+                                            <a href="{% url 'achievement_detail' goal.slug goal.pk %}">{{ goal.title }}</a>
+                                        </h5>
+                                        <p class="card-description">
+                                            {{ goal.abstract|safe }} <br>
+                                        </p>
+                                        <hr>
+                                        <div class="card-footer">
+                                            <div class="author">
+                                                <a href="#pablo">
+                                                    {% if profile.picture %}
+                                                    <img src="{{ profile.picture.url }}" alt="{{ profile.name }}" class="avatar img-raised">
+                                                    {% endif %}
+                                                    <span>{{ profile.name }}</span>
+                                                </a>
+                                            </div>
+                                            <div class="stats">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i> {{ goal.publication_date|date:"d/m/Y" }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
                     </div>
+                    {% endif %}
                 </div>
-                {% endif %}
-                <div class="content">
-                    {% if goal.hot %}
-                    <h6 class="category text-danger">
-                        <i class="fa fa-fire" data-toggle="tooltip" data-placement="top" title="relevant for {{ goal.theme }}"></i> Hot Story
-                    </h6>
-                    {% else %}
-                    <h6 class="category">
-                        {{ goal.theme }}
-                    </h6>
-                    {% endif %}
-                    <h4 class="title">
-                        <a href="{% url 'achievement_detail' goal.slug goal.pk %}">{{ goal.title }}</a>
-                    </h4>
-                    <p class="description">{{ goal.abstract|safe }}</p>
-                </div>                                           
-            </div> <!-- end card -->
-        </div> <!-- end grid columns -->
-        {% if forloop.counter0 == 2 %}
-        <div class="clearfix"></div>
-        {% endif %}
-        {% endfor %}
-        
-        {% if is_paginated %}
-            <div class="clearfix"></div>
-            <div class="row">
-            <div class="text-center">
-            <div class="pagination">
-                <span class="page-links">
-                    {% if page_obj.has_previous %}
-                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-                    {% endif %}
-                    <span class="page-current">
-                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                    </span>
-                    {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}">next</a>
-                    {% endif %}
-                </span>
             </div>
-            </div>
-            </div>
-        {% endif %}
-    {% else %}
-        <h4 class="text-center">There aren't any goals :(</h4>
-    {% endif %}
+        </div>
 {% endblock content %}
-
-{% block extrascript %}
-<script type="text/javascript">
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip()
-    })
-</script>
-{% endblock extrascript %}

@@ -1,58 +1,40 @@
 {% extends 'base.html' %}
 
-{% block title %}home{% endblock %}
+{% block title %}home{% endblock title %}
 
-{% block home %}current{% endblock %}
+{% block navigation %}
+
+{% endblock navigation %}
 
 {% block content %}
-<div class="col-md-10 col-md-offset-1">
-<article class="post" role="article" itemscope itemtype="http://schema.org/BlogPosting"><!-- .post start -->
-
-  {% if profile.picture %}
-  <div class="row">
-    <div class="profile-header-container" style="max-width: 450px;">    
-      <div class="profile-header-img">
-        <img class="img-circle" src="{{ profile.picture.url }}" />
-      </div>
-      {% for r in reports %}
-      <div class="card-box col-md-4 col-xs-4">
-          <div class="cardtext-center">
-            <div class="content">
-             <div class="price">
-                <h2 class="title text-center">{{ r.1 }}</h2>
-                <h5 class="description text-center">{{ r.0|title }}</h5>
-              </div>
-            </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div><!-- end profile container -->
-  </div><!-- end profile row -->
-
-  {% endif %}
-  
-  <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
-
-      {% if profile.job_content %}
-        <p class="text-center">{{ profile.job_content|striptags }}</p>
-      {% endif %}
-      
-      {% if profile.hobby_content %}
-        <p class="text-center">{{ profile.hobby_content|striptags }}</p>
-      {% endif %}
-
-  </section><!-- .post-content end -->
-
-  <section class="post-content clearfix" itemprop="articleBody"><!-- .post-content start -->
-  <div class="col-md-6 col-md-offset-3 text-center"> 
-    {% if profile.cv %}
-    <div class="control-group">
-      <a target="_blank" class="button" title="my curriculum vitae" href="{{ profile.cv.url }}"><i class="fa fa-file-text-o fa-fw"></i> Curriculum Vitae</a>
-    </div>
-    {% endif %}
+  <div class="page-header page-header-xs" {% if profile.header %}style="background-image: url({{ profile.header.url }});"{% endif %}>
+      <div class="filter"></div>
   </div>
-  </section>
+  <div class="profile-content section">
+      <div class="container">
+          <div class="row">
+              {% if profile.picture %}
+              <div class="profile-picture">
+                  <div class="fileinput fileinput-new" data-provides="fileinput">
+                      <div class="fileinput-new img-no-padding">
+                          <img src="{{ profile.picture.url }}" alt="{{ profile.name }}">
+                      </div>
+                      <div class="name">
+                          <h4 class="title text-center">{{ profile.name|title }} {{ profile.surname|title }}<br /><small>Dungeon Master</small></h4>
+                      </div>
+                </div>
+              </div>
+              {% endif %}
+          </div>
+          <div class="row">
+              <div class="col-md-6 offset-md-3 text-center">
+                  <p>{{ profile.job_content|striptags }}</p>
+                  <p>{{ profile.hobby_content|striptags }}</p>
+                  <br />
+                  <a class="btn btn-outline-default btn-round" href="{% url 'achievements' %}"><i class="fa fa-align-center" aria-hidden="true"></i> Blog</a>
+              </div>
+          </div>
+          <br/>
+  </div>
+{% endblock content %}
 
-  </article><!-- .post end -->
-</div>
-{% endblock %}

@@ -29,6 +29,7 @@ class Bio(TimeStampedModel):
     title = models.CharField(max_length=100)
     picture = models.ImageField(upload_to='media/bio/', blank=True)
     cv = models.FileField(upload_to='media/bio/', blank=True)
+    header = models.ImageField(upload_to='media/bio/', blank=True)
     job_content = models.TextField()
     hobby_content = models.TextField()
     active = models.BooleanField(default=True) 
