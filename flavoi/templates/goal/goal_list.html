@@ -1,53 +1,61 @@
 {% extends 'base.html' %}
 
+{% block title %}blog{% endblock title %}
+
 {% block content %}
 <div class="blog-2 section section-gray">
-            <div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <h2 class="title">Latest Blogposts</h2>
+                <br>
+                {% if published_goals %}
                 <div class="row">
-                    <div class="col-md-10 offset-md-1">
-                        <h2 class="title">Latest Blogposts</h2>
-                        <br>
-                        {% if published_goals %}
-                        <div class="row">
-                            {% for goal in published_goals %}
-                            <div class="col-md-4">
-                                <div class="card card-blog">
-                                    <div class="card-image">
-                                        <a href="{% url 'achievement_detail' goal.slug goal.pk %}">
-                                            {% if goal.picture %}
-                                                <img class="img img-raised" src="{{ goal.picture.url }}">
+                    {% for goal in published_goals %}
+                    <div class="col-md-4">
+                        <div class="card card-blog">
+                            <div class="card-image">
+                                <a href="{% url 'achievement_detail' goal.slug goal.pk %}">
+                                    {% if goal.picture %}
+                                        <img class="img img-raised" src="{{ goal.picture.url }}">
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <div class="card-block">
+                                {% if goal.hot %}
+                                <h6 class="card-category text-danger">
+                                    <i class="fa fa-free-code-camp" aria-hidden="true"></i> Hot Story
+                                </h6>
+                                {% else %}
+                                <h6 class="card-category text-info">{{ goal.theme }}</h6>
+                                {% endif %}
+                                <h5 class="card-title">
+                                    <a href="{% url 'achievement_detail' goal.slug goal.pk %}">{{ goal.title }}</a>
+                                </h5>
+                                <p class="card-description">
+                                    {{ goal.abstract|safe }} <br>
+                                </p>
+                                <hr>
+                                <div class="card-footer">
+                                    <div class="author">
+                                        <a href="{% url 'home' %}">
+                                            {% if profile.picture %}
+                                            <img src="{{ profile.picture.url }}" alt="{{ profile.name }}" class="avatar img-raised">
                                             {% endif %}
+                                            <span>{{ profile.name }}</span>
                                         </a>
                                     </div>
-                                    <div class="card-block">
-                                        <h6 class="card-category text-info">{{ goal.theme }}</h6>
-                                        <h5 class="card-title">
-                                            <a href="{% url 'achievement_detail' goal.slug goal.pk %}">{{ goal.title }}</a>
-                                        </h5>
-                                        <p class="card-description">
-                                            {{ goal.abstract|safe }} <br>
-                                        </p>
-                                        <hr>
-                                        <div class="card-footer">
-                                            <div class="author">
-                                                <a href="#pablo">
-                                                    {% if profile.picture %}
-                                                    <img src="{{ profile.picture.url }}" alt="{{ profile.name }}" class="avatar img-raised">
-                                                    {% endif %}
-                                                    <span>{{ profile.name }}</span>
-                                                </a>
-                                            </div>
-                                            <div class="stats">
-                                                <i class="fa fa-calendar" aria-hidden="true"></i> {{ goal.publication_date|date:"d/m/Y" }}
-                                            </div>
-                                        </div>
+                                    <div class="stats">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i> {{ goal.publication_date|date:"d/m/Y" }}
                                     </div>
                                 </div>
                             </div>
-                            {% endfor %}
+                        </div>
                     </div>
-                    {% endif %}
-                </div>
+                    {% endfor %}
             </div>
+            {% endif %}
         </div>
+    </div>
+</div>
 {% endblock content %}
