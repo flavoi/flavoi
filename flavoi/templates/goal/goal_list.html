@@ -15,7 +15,7 @@
                     <div class="col-md-4">
                         <div class="card card-blog">
                             <div class="card-image">
-                                <a href="{% url 'achievement_detail' goal.slug goal.pk %}">
+                                <a href="{% url 'achievement_detail' goal.slug %}">
                                     {% if goal.picture %}
                                         <img class="img img-raised" src="{{ goal.picture.url }}">
                                     {% endif %}
@@ -30,7 +30,7 @@
                                 <h6 class="card-category text-info">{{ goal.theme }}</h6>
                                 {% endif %}
                                 <h5 class="card-title">
-                                    <a href="{% url 'achievement_detail' goal.slug goal.pk %}">{{ goal.title }}</a>
+                                    <a href="{% url 'achievement_detail' goal.slug %}">{{ goal.title }}</a>
                                 </h5>
                                 <p class="card-description">
                                     {{ goal.abstract|safe }} <br>

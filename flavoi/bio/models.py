@@ -27,6 +27,7 @@ class Bio(TimeStampedModel):
     name = models.CharField(max_length=30)
     surname = models.CharField(max_length=30)
     title = models.CharField(max_length=100)
+    description = models.CharField(max_length=100, blank=True)
     picture = models.ImageField(upload_to='media/bio/', blank=True)
     cv = models.FileField(upload_to='media/bio/', blank=True)
     header = models.ImageField(upload_to='media/bio/', blank=True)
