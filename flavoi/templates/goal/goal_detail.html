@@ -56,16 +56,12 @@
                                 <div class="media">
                                      <a class="pull-left" href="#paper-kit">
                                          <div class="avatar big-avatar">
-                                               <img class="media-object" alt="64x64" src="../assets/img/faces/kaci-baum-2.jpg">
+                                               <img class="media-object" alt="64x64" src="{{ profile.picture.url }}">
                                          </div>
                                      </a>
                                      <div class="media-body">
-                                           <h4 class="media-heading">Sophie Banks</h4>
-                                           <div class="pull-right">
-                                               <a href="#paper-kit" class="btn btn-default btn-round "> <i class="fa fa-reply"></i> Follow</a>
-                                           </div>
-                                           <p>Hello guys, nice to have you on the platform! There will be a lot of great stuff coming soon. We will keep you posted for the latest news.</p>
-                                           <p> Don't forget, You're Awesome!</p>
+                                           <h4 class="media-heading">{{ profile.name }} {{ profile.surname }}</h4>
+                                           <p>{{ profile.description }}</p>
 
                                      </div>
                                  </div>
@@ -73,78 +69,8 @@
 
                             <div class="comments media-area">
                                 <h3 class="text-center">Comments</h3>
-                                <div class="media">
-                                  <a class="pull-left" href="#paper-kit">
-                                      <div class="avatar">
-                                         <img class="media-object" alt="Tim Picture" src="../assets/img/faces/clem-onojeghuo-3.jpg">
-                                      </div>
-                                  </a>
-                                  <div class="media-body">
-                                    <h5 class="media-heading">John Lincoln</h5>
-                                    <div class="pull-right">
-                                        <h6 class="text-muted">Sep 11, 11:54 AM</h6>
-                                        <a href="#paper-kit" class="btn btn-info btn-link pull-right "> <i class="fa fa-reply"></i> Reply</a>
-
-                                    </div>
-
-                                     <p>Hello guys, nice to have you on the platform! There will be a lot of great stuff coming soon. We will keep you posted for the latest news.</p>
-
-                                     <div class="media">
-                                          <a class="pull-left" href="#paper-kit">
-                                              <div class="avatar">
-                                                    <img class="media-object" alt="64x64" src="../assets/img/faces/clem-onojeghuo-2.jpg">
-                                              </div>
-                                          </a>
-                                          <div class="media-body">
-                                                <h5 class="media-heading">Erik Faker</h5>
-                                                <div class="pull-right">
-                                                    <h6 class="text-muted">Sep 11, 11:56 AM</h6>
-                                                    <a href="#paper-kit" class="btn btn-info btn-link pull-right "> <i class="fa fa-reply"></i> Reply</a>
-
-                                                </div>
-                                                <p>Hello guys, nice to have you on the platform! There will be a lot of great stuff coming soon. We will keep you posted for the latest news.</p>
-                                                <p> Don't forget, You're Awesome!</p>
-
-                                          </div>
-                                      </div> <!-- end media -->
-                                  </div>
-                                </div> <!-- end media -->
-                                <div class="media">
-                                      <a class="pull-left" href="#paper-kit">
-                                          <div class="avatar">
-                                                <img class="media-object" alt="64x64" src="../assets/img/faces/joe-gardner-2.jpg">
-                                          </div>
-                                      </a>
-                                      <div class="media-body">
-                                            <h5 class="media-heading">Joe</h5>
-                                            <div class="pull-right">
-                                                <h6 class="text-muted">Sep 11, 11:57 AM</h6>
-                                                <a href="#paper-kit" class="btn btn-info btn-link pull-right "> <i class="fa fa-reply"></i> Reply</a>
-
-                                            </div>
-                                            <p>Hello guys, nice to have you on the platform! There will be a lot of great stuff coming soon. We will keep you posted for the latest news.</p>
-                                            <p> Don't forget, You're Awesome!</p>
-                                      </div>
-                                </div> <!-- end media -->
+                                    <div id="disqus_thread"></div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="related-articles">
-                    <h3 class="title">Related articles</h3>
-                    <legend></legend>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <a href="pkp"><img src="../assets/img/sections/damir-bosnjak.jpg" alt="Rounded Image" class="img-rounded img-responsive"></a>
-                            <p class="blog-title">My Review of Pitchfork’s ‘Indie 500’ Album Review</p>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="pkp"><img src="../assets/img/sections/por7o.jpg" alt="Rounded Image" class="img-rounded img-responsive"></a>
-                            <p class="blog-title">Top Events This Month</p>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="pkp"><img src="../assets/img/sections/jeff-sheldon.jpg" alt="Rounded Image" class="img-rounded img-responsive"></a>
-                            <p class="blog-title">You Should Get Excited About Virtual Reality. Here’s Why.</p>
                         </div>
                     </div>
                 </div>
@@ -154,3 +80,25 @@
     </div>
 
 {% endblock content %}
+
+{% block extrascript %}
+    <script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    
+    var disqus_config = function () {
+    this.page.url = 'http://flavoi.it{{ request.path }}';
+    this.page.identifier = '/{{ request.path }}/';
+    };
+    
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://flavoi.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <script id="dsq-count-scr" src="//flavoi.disqus.com/count.js" async></script>
+{% endblock extrascript %}
