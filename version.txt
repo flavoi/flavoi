@@ -8,7 +8,7 @@ update 5, version 3.0.0 - 12/08/2017
    - Updated ckeditor for improved compatibility with django
    - Updated pagination links with page numbers
    - Updated error pages including 404 and 500
-   - Fixed pagination position to the bottom of the page 
+   - Fixed pagination position to the bottom-center of the page 
    - Removed momenti and inspirations pages
 
 update 4, version 2.3.2 - 22/07/2017
