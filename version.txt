@@ -1,10 +1,12 @@
-update 5, version 2.3.3 - 09/08/2017
-   - Introduced dedicated stylesheet for ideas' posts
-   - Introduced cards with photo for ideas' posts
+update 5, version 3.0.0 - 12/08/2017
+   - Introduced paper kit styles
    - Introduced comments powered by Disqus
+   - Updated cards with dedicated photo for blog posts
    - Updated ckeditor for improved compatibility with django
-   - Updated styles for ideas' attachements
+   - Updated styles for blog's attachements
+   - Updated error pages including 404 and 500
    - Fixed pagination position to the bottom of the page 
+   - Removed momenti and inspirations pages
 
 update 4, version 2.3.2 - 22/07/2017
    - Updated text styles in ideas' page for better readability
