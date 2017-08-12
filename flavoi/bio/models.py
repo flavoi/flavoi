@@ -3,6 +3,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.conf import settings
+from django.utils.safestring import mark_safe
 
 from ckeditor.fields import RichTextField
 
@@ -27,14 +28,16 @@ class Bio(TimeStampedModel):
     name = models.CharField(max_length=30)
     surname = models.CharField(max_length=30)
     title = models.CharField(max_length=100)
-    description = models.CharField(max_length=100, blank=True)
+    description = RichTextField(blank=True)
     picture = models.ImageField(upload_to='media/bio/', blank=True)
-    cv = models.FileField(upload_to='media/bio/', blank=True)
     header = models.ImageField(upload_to='media/bio/', blank=True)
-    job_content = models.TextField()
-    hobby_content = models.TextField()
     active = models.BooleanField(default=True) 
     
+    def thumbnail(self):
+        return mark_safe('<img src="%s" width="32" height="32" />' % (self.picture.url))
+
+    thumbnail.short_description = 'Thumbnail'
+
     def __unicode__(self):
         return u'%s' % (self.name)
 

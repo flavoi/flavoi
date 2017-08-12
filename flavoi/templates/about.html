@@ -30,8 +30,7 @@
           </div>
           <div class="row">
               <div class="col-md-6 offset-md-3 text-center">
-                  <p>{{ profile.job_content|striptags }}</p>
-                  <p>{{ profile.hobby_content|striptags }}</p>
+                  <p>{{ profile.description|striptags }}</p>
                   <br />
                   <a class="btn btn-outline-default btn-round" href="{% url 'achievements' %}"><i class="fa fa-align-center" aria-hidden="true"></i> Blog</a>
               </div>
