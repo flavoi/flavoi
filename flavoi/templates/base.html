@@ -34,17 +34,16 @@
       {% block content %}{% endblock content %}
   </div>
 
-<footer class="footer {% block footerclass %}footer-big{% endblock footerclass %}">
-  <div class="text-center">
-     <i class="fa fa-creative-commons"></i> {{ copy }} | 
-      {% for c in contacts %}
-        <a href="{{ c.link }}" class="btn btn-just-icon btn-link btn-{{ c.icon }}">
-          <i class="fa fa-{{ c.icon }}" aria-hidden="true"></i>
-        </a>
-      {% endfor %}
-  </div>
+  <footer class="footer {% block footerclass %}footer-big{% endblock footerclass %}">
+    <div class="text-center">
+       <i class="fa fa-creative-commons"></i> {{ copy }} | 
+        {% for c in contacts %}
+          <a href="{{ c.link }}" class="btn btn-just-icon btn-link btn-{{ c.icon }}">
+            <i class="fa fa-{{ c.icon }}" aria-hidden="true"></i>
+          </a>
+        {% endfor %}
+    </div>
   </footer>
-
 </body>
 
 <!-- Core JS Files -->
