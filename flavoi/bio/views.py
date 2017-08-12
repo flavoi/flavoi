@@ -18,7 +18,7 @@ class GreetingView(View):
 # Render the homepage
 class HomeView(ListView):
     model = Goal
-    template_name = "home.html"
+    template_name = "about.html"
     context_object_name = 'current_goal'
 
     def get_queryset(self):

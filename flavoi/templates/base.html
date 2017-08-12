@@ -25,7 +25,7 @@
 
 </head>
 
-<body class="profile">
+<body class="{% block bodyclass %}blog-page{% endblock bodyclass %}">
   <nav class="navbar navbar-toggleable-md fixed-top bg-info navbar-transparent" color-on-scroll="200">
       {% block navigation %}{% endblock navigation %}
   </nav>

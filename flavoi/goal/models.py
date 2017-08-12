@@ -59,6 +59,7 @@ class Goal(TimeStampedFeature):
     title = models.CharField(max_length=60)
     abstract = RichTextField()
     picture = models.ImageField(blank=True, upload_to='media/goals/')
+    caption = models.CharField(max_length=60, blank=True)
     description = RichTextField()
     published = models.BooleanField(default=False)
     hot = models.BooleanField(default=False)
