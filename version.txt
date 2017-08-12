@@ -1,4 +1,4 @@
-update 5, version 3.0.1 - 12/08/2017
+update 5, version 3.0.2 - 12/08/2017
    - Introduced paper kit styles
    - Introduced comments powered by Disqus
    - Introduced dedicated section for blog's attachements
