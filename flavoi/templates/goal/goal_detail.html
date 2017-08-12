@@ -3,24 +3,26 @@
 {% block title %}{{ published_goal_detail.title}}{% endblock title %}
 
 {% block navigation %}
-<div class="container">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-bar"></span>
-                <span class="navbar-toggler-bar"></span>
-                <span class="navbar-toggler-bar"></span>
-            </button>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'about' %}" data-scroll="true" href="javascript:void(0)">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-round btn-info" href="{% url 'achievements' %}"><i class="fa fa-backward" aria-hidden="true"></i> to Blogposts</a>
-                    </li>
-                </ul>
-            </div>
+    <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar"></span>
+            <span class="navbar-toggler-bar"></span>
+            <span class="navbar-toggler-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'about' %}">
+            Flavio
+        </a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="btn btn-round btn-info" href="{% url 'achievements' %}"><i class="fa fa-backward" aria-hidden="true"></i> to Blogposts</a>
+                </li>
+            </ul>
         </div>
+    </div>
 {% endblock navigation %}
+
+{% block bodyclass %}blog-page{% endblock bodyclass %}
 
 {% block content %}
     <div class="main">
