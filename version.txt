@@ -3,6 +3,7 @@ update 5, version 3.0.0 - 12/08/2017
    - Introduced comments powered by Disqus
    - Introduced dedicated section for blog's attachements
    - Introduced dedicated section for author's bio
+   - Updated bio's model with thumbnail and header pic
    - Updated cards with dedicated photo for blog posts
    - Updated ckeditor for improved compatibility with django
    - Updated pagination links with page numbers
