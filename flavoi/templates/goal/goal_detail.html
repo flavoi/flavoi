@@ -44,7 +44,7 @@
                         <div class="col-md-8 offset-md-2">
 
                             {% if published_goal_detail.picture %}
-                            <a href="javascrip: void(0);">
+                            <a href="{{ published_goal_detail.picture.url }}">
                                 <div class="card" data-radius="none" style="background-image: url('{{ published_goal_detail.picture.url }}');"></div>
                                 <p class="image-thumb text-center">{{ published_goal_detail.caption }}</p>
                             </a>
