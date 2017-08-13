@@ -6,13 +6,13 @@
 <div class="section section-gray">
     <div class="container">
         <div class="row">
-            <div class="col-md-10 offset-md-1">
+            <div class="col-lg-10 offset-lg-1 col-md-12 col-sm-12">
                 <h2 class="title">Latest Blogposts</h2>
                 <br>
                 {% if published_goals %}
                 <div class="row">
                     {% for goal in published_goals %}
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-6 col-sm-12">
                         <div class="card card-blog">
                             <div class="card-image">
                                 <a href="{% url 'achievement_detail' goal.slug %}">
