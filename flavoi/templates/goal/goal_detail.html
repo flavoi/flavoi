@@ -2,26 +2,6 @@
 
 {% block title %}{{ published_goal_detail.title}}{% endblock title %}
 
-{% block navigation %}
-    <div class="container">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar"></span>
-            <span class="navbar-toggler-bar"></span>
-            <span class="navbar-toggler-bar"></span>
-        </button>
-        <a class="navbar-brand" href="{% url 'about' %}">
-            Flavoi
-        </a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="btn btn-round btn-info" href="{% url 'achievements' %}"><i class="fa fa-backward" aria-hidden="true"></i> to Blogposts</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-{% endblock navigation %}
-
 {% block bodyclass %}blog-page{% endblock bodyclass %}
 
 {% block content %}
@@ -32,12 +12,11 @@
                 <div class="article">
 
                     <div class="row">
-                        <div class="col-md-10 offset-md-1 col-sm-12">
-                            <div class="text-center">
-                                <span class="label label-warning main-tag">{{ published_goal_detail.theme }}</span>
-                                <a href="javascrip: void(0);"><h3 class="title">{{ published_goal_detail.title }}</h3></a>
-                                <h6 class="title-uppercase">{{ published_goal_detail.publication_date }}</h6>
-                            </div>
+                        <div class="col-md-6 offset-md-3 text-center title">
+                            <span class="label label-warning main-tag">{{ published_goal_detail.theme }}</span>
+                            <h2>{{ published_goal_detail.title }}</h2>
+                            <br />
+                            <h6 class="title-uppercase">{{ published_goal_detail.publication_date }}</h6>
                         </div>
                     </div>
 
@@ -81,7 +60,7 @@
                                      </a>
                                      <div class="media-body">
                                            <h4 class="media-heading">{{ profile.name }} {{ profile.surname }}</h4>
-                                           <p>{{ profile.description|striptags }}</p>
+                                           <p>{{ profile.title|striptags }}</p>
 
                                      </div>
                                  </div>
