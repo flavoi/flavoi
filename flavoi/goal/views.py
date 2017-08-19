@@ -7,6 +7,7 @@ from django.views.generic.detail import DetailView
 from django.core.exceptions import ObjectDoesNotExist
 
 from .models import Goal, Theme
+from bio.models import Inspiration
 
 
 # My goals in all history
@@ -24,7 +25,8 @@ class AchievementsView(ListView):
         context = super(AchievementsView, self).get_context_data(**kwargs)
         # Display used themes only
         context['themes'] = Theme.objects.filter(goal__isnull=False).filter(goal__published=True).distinct()
-        context['history_link_class'] = 'current'
+        # Get a random inspiration
+        context['inspiration'] = Inspiration.objects.order_by('?')[0]
         return context
 
 
@@ -37,8 +39,6 @@ class AchievementsThemeListView(AchievementsView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(AchievementsThemeListView, self).get_context_data(**kwargs)
-        context['this_link_class'] = self.kwargs['theme']
-        context['history_link_class'] = 'link'
         return context
 
 
@@ -71,8 +71,5 @@ class AchievementsSearchView(AchievementsView):
 
     def get_context_data(self, **kwargs):
         context = super(AchievementsSearchView, self).get_context_data(**kwargs)
-        context['history_link_class'] = 'link'
-        context['year_link_class'] = 'link'
-        context['month_link_class'] = 'link'
         context['search_query'] = self.request.GET.get('q')
         return context

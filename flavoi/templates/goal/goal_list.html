@@ -12,7 +12,7 @@
 
         <div class="row">
 
-            <div class="col-md-8">
+            <div class="col-md-9">
                 {% if published_goals %}
                 <div class="row">
                     {% for goal in published_goals %}
@@ -60,43 +60,36 @@
                     {% endfor %}
                 </div>
                 {% else %}
-                <h3>There are no posts yet :-(</h3>
+                <h3>There are no posts yet <i class="fa fa-frown-o" aria-hidden="true"></i></h3>
                 {% endif %}    
             </div> <!-- End grid column -->
-            <div class="col-md-4">
+            <div class="col-md-3">
+
                 <div class="card card-plain">       
-                        <div class="card-block" role="tab" id="priceRanger">
-                            <form role="search" class="form-inline" action="{% url 'blog:search' %}" method="get">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search" name="q" {% if 'search_query' %}value={{ search_query }}{% endif %}>
-                                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                                </div>
-                            </form>
-                        </div>
-                        <!--
+                    <div class="card-block" role="tab" id="priceRanger">
+                        <form role="search" class="form-inline" action="{% url 'blog:search' %}" method="get">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search" name="q" {% if 'search_query' %}value={{ search_query }}{% endif %}>
+                                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                            </div>
+                        </form>
+                    </div>                        
+                </div>
 
-                        <div class="card-header card-collapse" role="tab" id="clothingGear">
-                            <h5 class="mb-0 panel-title">
-                                <a class="" data-toggle="collapse" data-parent="#accordion" href="#themes" aria-expanded="true" aria-controls="collapseSecond">
-                                    Themes
-                                    <i class="nc-icon nc-minimal-down"></i>
-                                </a>
-                            </h5>
-                        </div>
-
-                        <div id="themes" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-                            <div class="card-block">
-                                {% for theme in themes %}
-                                <div class="checkbox">
-                                    <input id="checkbox{{ theme.pk }}" type="checkbox" checked="">
-                                    <label for="checkbox{{ theme.pk }}">
-                                        {{ theme }}
-                                    </label>
-                                </div>
-                                {% endfor %}                                    
-                            </div>                                
-                        </div>-->
+                <div class="card card-testimonial">
+                    <div class="card-icon">
+                        <i class="fa fa-quote-right" aria-hidden="true"></i>
                     </div>
+                    <div class="card-block">
+                        <p class="card-description">
+                            {{ inspiration.quote }}
+                        </p>
+                        <div class="card-footer">
+                            <h4 class="card-title">{{ inspiration.author }}</h4>
+                            <h6 class="card-category">Inspiration #{{ inspiration.pk }}</h6>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div> <!-- End row -->
 
