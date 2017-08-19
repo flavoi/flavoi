@@ -2,41 +2,40 @@
 
 {% block title %}blog{% endblock title %}
 
-{% block navbarclass %}
-navbar navbar-toggleable-md fixed-top bg-info navbar-light
-{% endblock navbarclass %} 
-
 {% block navbarscrolls %}{% endblock navbarscrolls %}
 
 {% block content %}
 <div class="section section-gray">
     <div class="container">
+
+        <br /><br />
+
         <div class="row">
-            <div class="col-lg-10 offset-lg-1 col-md-12 col-sm-12">
-                <h2 class="title">Latest Blogposts</h2>
-                <br>
+
+            <div class="col-md-8">
                 {% if published_goals %}
                 <div class="row">
                     {% for goal in published_goals %}
-                    <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="col-md-4 col-sm-6">
                         <div class="card card-blog">
                             <div class="card-image">
-                                <a href="{% url 'achievement_detail' goal.slug %}">
+                                <a href="{% url 'blog:detail' goal.slug %}">
                                     {% if goal.picture %}
                                         <img class="img img-raised" src="{{ goal.picture.url }}">
                                     {% endif %}
                                 </a>
                             </div>
+                            
                             <div class="card-block">
                                 {% if goal.hot %}
                                 <h6 class="card-category text-danger">
                                     <i class="fa fa-free-code-camp" aria-hidden="true"></i> Hot Story
                                 </h6>
                                 {% else %}
-                                <h6 class="card-category text-info">{{ goal.theme }}</h6>
+                                <h6 class="card-category text-warning">{{ goal.theme }}</h6>
                                 {% endif %}
                                 <h5 class="card-title">
-                                    <a href="{% url 'achievement_detail' goal.slug %}">{{ goal.title }}</a>
+                                    <a href="{% url 'blog:detail' goal.slug %}">{{ goal.title }}</a>
                                 </h5>
                                 <p class="card-description">
                                     {{ goal.abstract|safe }} <br>
@@ -44,7 +43,7 @@ navbar navbar-toggleable-md fixed-top bg-info navbar-light
                                 <hr>
                                 <div class="card-footer">
                                     <div class="author">
-                                        <a href="{% url 'about' %}">
+                                        <a href="{% url 'bio:about' %}">
                                             {% if profile.picture %}
                                             <img src="{{ profile.picture.url }}" alt="{{ profile.name }}" class="avatar img-raised">
                                             {% endif %}
@@ -60,8 +59,45 @@ navbar navbar-toggleable-md fixed-top bg-info navbar-light
                     </div>
                     {% endfor %}
                 </div>
+                {% else %}
+                <h3>There are no posts yet :-(</h3>
                 {% endif %}    
             </div> <!-- End grid column -->
+            <div class="col-md-4">
+                <div class="card card-plain">       
+                        <div class="card-block" role="tab" id="priceRanger">
+                            <form role="search" class="form-inline" action="{% url 'blog:search' %}" method="get">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search" name="q" {% if 'search_query' %}value={{ search_query }}{% endif %}>
+                                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                </div>
+                            </form>
+                        </div>
+                        <!--
+
+                        <div class="card-header card-collapse" role="tab" id="clothingGear">
+                            <h5 class="mb-0 panel-title">
+                                <a class="" data-toggle="collapse" data-parent="#accordion" href="#themes" aria-expanded="true" aria-controls="collapseSecond">
+                                    Themes
+                                    <i class="nc-icon nc-minimal-down"></i>
+                                </a>
+                            </h5>
+                        </div>
+
+                        <div id="themes" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="card-block">
+                                {% for theme in themes %}
+                                <div class="checkbox">
+                                    <input id="checkbox{{ theme.pk }}" type="checkbox" checked="">
+                                    <label for="checkbox{{ theme.pk }}">
+                                        {{ theme }}
+                                    </label>
+                                </div>
+                                {% endfor %}                                    
+                            </div>                                
+                        </div>-->
+                    </div>
+            </div>
         </div> <!-- End row -->
 
         {% if is_paginated %}

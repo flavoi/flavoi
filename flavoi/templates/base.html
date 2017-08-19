@@ -26,27 +26,26 @@
 </head>
 
 <body class="{% block bodyclass %}blog-page{% endblock bodyclass %}">
-  <nav class="{% block navbarclass %}navbar navbar-toggleable-md fixed-top bg-info navbar-transparent{% endblock navbarclass %}" {% block navbarscrolls %}color-on-scroll="200"{% endblock navbarscrolls %}>
+  
+  <nav class="{% block navbarclass %}navbar navbar-toggleable-md fixed-top nav-down{% endblock navbarclass %}" {% block navbarscrolls %}color-on-scroll="200"{% endblock navbarscrolls %}>
       {% block navigation %}
-
         <div class="container">
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-bar"></span>
               <span class="navbar-toggler-bar"></span>
               <span class="navbar-toggler-bar"></span>
           </button>
-          <a class="navbar-brand" href="{% url 'achievements' %}">
+          <a class="navbar-brand" href="{% url 'blog:home' %}">
               Flavoi's Blog
           </a>
           <div class="collapse navbar-collapse">
-              <ul class="navbar-nav ml-auto">
+              <ul class="navbar-nav mr-auto">
                   <li class="nav-item">
-                      <a class="nav-link" href="{% url 'about' %}">About</a>
+                      <a class="nav-link" href="{% url 'bio:about' %}">About</a>
                   </li>
               </ul>
           </div>
         </div>
-
       {% endblock navigation %}
   </nav>
 

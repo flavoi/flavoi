@@ -22,7 +22,7 @@
 
                     <div class="row">
 
-                        <div class="col-md-8 offset-md-2">
+                        <div class="col-md-8 offset-md-2 col-sd-10 offset-sd-1">
 
                             {% if published_goal_detail.picture %}
                             <a href="{{ published_goal_detail.picture.url }}">
@@ -53,7 +53,7 @@
 
                             <div class="row">
                                 <div class="media">
-                                     <a class="pull-left" href="{% url 'about' %}">
+                                     <a class="pull-left" href="{% url 'bio:about' %}">
                                          <div class="avatar big-avatar">
                                                <img class="media-object" alt="64x64" src="{{ profile.picture.url }}">
                                          </div>
