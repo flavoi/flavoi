@@ -1,3 +1,9 @@
+update 6 → version 3.1.0 → 19/08/2017
+   - Introduced search box for blogpost titles 
+   - Introduced inspiration box in blogposts page
+   - Updated navbar and themes colors
+   - Fixed navbar visuals in blogposts page
+
 update 5 → version 3.0.6 - 17/08/2017
    - Introduced paper kit styles
    - Introduced comments powered by Disqus
