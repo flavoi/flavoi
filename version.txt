@@ -1,7 +1,7 @@
-update 5, version 3.0.6 → 17/08/2017
+update 5 → version 3.0.6 - 17/08/2017
    - Introduced paper kit styles
    - Introduced comments powered by Disqus
-   - Introduced dedicated section for blog's attachements
+   - Introduced dedicated section for blog's attachments
    - Introduced dedicated section for author's bio
    - Updated bio's model with thumbnail and header pic
    - Updated cards with dedicated photo for blog posts
@@ -11,19 +11,19 @@ update 5, version 3.0.6 → 17/08/2017
    - Fixed pagination position to the bottom-center of the page 
    - Removed momenti and inspirations pages
 
-update 4, version 2.3.2 - 22/07/2017
+update 4 → version 2.3.2 - 22/07/2017
    - Introduced dedicated picture for every idea's post
    - Introduced dedicated typography styles in ideas' page for better readability
    - Updated django to release 1.11
 
-update 3, version 2.2.2 - 11/06/2017
+update 3 → version 2.2.2 - 11/06/2017
    - Introduced a refreshed homepage with circled photo and brief bio
    - Updated page names and icons
    - Updated global font to Source Sans Pro
    - Fixed a problem that caused 404 while searching from search box
    - Fixed a problem that caused some goal cards to create too much horizontal padding
 
-update 2, version 2.1.2 - 24/04/2017
+update 2 → version 2.1.2 - 24/04/2017
    - Introduced tags management and filters for goals
    - Introduced cards as content preview in achievements page
    - Introduced hot flag for important achievements
@@ -40,10 +40,10 @@ update 2, version 2.1.2 - 24/04/2017
    - Removed achievement percentage and completion bar since it is redundant 
      with respect to the publication flag
 
-update 1, version 1.1.0 - 09/11/2015
+update 1 → version 1.1.0 - 09/11/2015
    - Introduced search field to jump to any goals by a keyword
    - Introduced dedicated achievements page with content section, pagination and permanent url
    - Updated styling for social icons
    - Updated django to release 1.9
 
-release, version 1.0.0 - 02/11/2014
+release → version 1.0.0 - 02/11/2014
