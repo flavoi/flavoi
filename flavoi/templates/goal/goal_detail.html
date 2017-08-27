@@ -2,15 +2,15 @@
 
 {% block title %}{{ published_goal_detail.title}}{% endblock title %}
 
+{% block navbarscrolls %}{% endblock navbarscrolls %}
+
 {% block bodyclass %}blog-page{% endblock bodyclass %}
 
 {% block content %}
     <div class="main">
         <div class="section section-white">
             <div class="container">
-
                 <div class="article">
-
                     <div class="row">
                         <div class="col-md-6 offset-md-3 text-center title">
                             <span class="label label-warning main-tag">{{ published_goal_detail.theme }}</span>
@@ -18,24 +18,17 @@
                             <br />
                             <h6 class="title-uppercase">{{ published_goal_detail.publication_date }}</h6>
                         </div>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-md-8 offset-md-2 col-sd-10 offset-sd-1">
-
+                        <div class="col-md-8 offset-md-2">
                             {% if published_goal_detail.picture %}
                             <a href="{{ published_goal_detail.picture.url }}">
                                 <div class="card" data-radius="none" style="background-image: url('{{ published_goal_detail.picture.url }}');"></div>
                                 <p class="image-thumb text-center">{{ published_goal_detail.caption }}</p>
                             </a>
                             {% endif %}
-
                             <div class="article-content">
                                 {{ published_goal_detail.abstract|safe }}
                                 {{ published_goal_detail.description|safe }}
                             </div>
-
                             <div class="article-footer">
                                 <div class="container">
                                     <div class="row">
@@ -49,9 +42,7 @@
                                     </div>
                                 </div>
                             </div>
-
                             <hr>
-
                             <div class="row">
                                 <div class="media">
                                      <a class="pull-left" href="{% url 'bio:about' %}">
@@ -66,7 +57,6 @@
                                      </div>
                                  </div>
                             </div>
-
                             <div class="comments media-area">
                                 <h3 class="text-center">Comments</h3>
                                     <div id="disqus_thread"></div>
@@ -76,28 +66,22 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 {% endblock content %}
 
 {% block extrascript %}
     <script>
-    /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-    
-    var disqus_config = function () {
-    this.page.url = 'http://flavoi.it{{ request.path }}';
-    this.page.identifier = '/{{ request.path }}/';
-    };
-    
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = 'https://flavoi.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
+        var disqus_config = function () {
+        this.page.url = 'http://flavoi.it{{ request.path }}';
+        this.page.identifier = '/{{ request.path }}/';
+        };
+        
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://flavoi.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <script id="dsq-count-scr" src="//flavoi.disqus.com/count.js" async></script>
