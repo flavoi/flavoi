@@ -29,23 +29,31 @@
   <nav class="{% block navbarclass %}navbar navbar-toggleable-md fixed-top nav-down{% endblock navbarclass %}" {% block navbarscrolls %}color-on-scroll="200"{% endblock navbarscrolls %}>
       {% block navigation %}
         <div class="container">
-          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="navbar-brand" href="{% url 'blog:home' %}">Flavoi's Blog</a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-bar"></span>
               <span class="navbar-toggler-bar"></span>
               <span class="navbar-toggler-bar"></span>
           </button>
-          <a class="navbar-brand" href="{% url 'blog:home' %}">
-              Flavoi's Blog
-          </a>
           <div class="collapse navbar-collapse">
-              <ul class="navbar-nav mr-auto">
-                  <li class="nav-item">
-                      <a class="nav-link" href="{% url 'bio:about' %}">About</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="{% url 'bio:inspirations' %}">Inspirations</a>
-                  </li>
-              </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'blog:home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'bio:about' %}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'bio:inspirations' %}">Inspirations</a>
+                </li>            
+            </ul>
+
+            <form role="search" class="form-inline my-2 my-lg-0" action="{% url 'blog:search' %}" method="get">
+              <div class="input-group margin-bottom-sm mr-sm-4">
+                <input class="form-control" type="text" placeholder="Search" name="q" aria-label="Search" {% if 'search_query' %}value="{{ search_query }}"{% endif %}>
+                <span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
+              </div>
+            </form>
           </div>
         </div>
       {% endblock navigation %}
