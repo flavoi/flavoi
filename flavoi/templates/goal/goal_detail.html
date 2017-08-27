@@ -43,23 +43,23 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="row">
-                                <div class="media">
-                                     <a class="pull-left" href="{% url 'bio:about' %}">
-                                         <div class="avatar big-avatar">
-                                               <img class="media-object" alt="64x64" src="{{ profile.picture.url }}">
-                                         </div>
-                                     </a>
-                                     <div class="media-body">
-                                           <h4 class="media-heading">{{ profile.name }} {{ profile.surname }}</h4>
-                                           <p>{{ profile.title|striptags }}</p>
-
-                                     </div>
-                                 </div>
-                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12 col-12">
+                            <div class="media">
+                                <a class="pull-left" href="{% url 'bio:about' %}">
+                                    <div class="avatar big-avatar">
+                                        <img class="media-object" alt="64x64" src="{{ profile.picture.url }}">
+                                    </div>
+                                </a>                         
+                                <h4 class="media-heading">{{ profile.name }} {{ profile.surname }}</h4>
+                                <h6 class="card-category">{{ profile.title }}</h6>
+                                <p>{{ profile.description|striptags }}</p>
+                             </div>
                             <div class="comments media-area">
                                 <h3 class="text-center">Comments</h3>
-                                    <div id="disqus_thread"></div>
+                                <div id="disqus_thread"></div>
                             </div>
                         </div>
                     </div>
