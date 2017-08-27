@@ -5,18 +5,15 @@
 {% block navbarscrolls %}{% endblock navbarscrolls %}
 
 {% block content %}
-<div class="section section-gray">
+<div class="section section-blog">
     <div class="container">
-
         <br /><br />
-
         <div class="row">
-
-            <div class="col-md-9">
+            <div class="col-md-10 offset-md-1">
                 {% if published_goals %}
                 <div class="row">
                     {% for goal in published_goals %}
-                    <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="col-md-4 mb-2">
                         <div class="card card-blog">
                             <div class="card-image">
                                 <a href="{% url 'blog:detail' goal.slug %}">
@@ -32,13 +29,13 @@
                                     <i class="fa fa-free-code-camp" aria-hidden="true"></i> Hot Story
                                 </h6>
                                 {% else %}
-                                <h6 class="card-category text-warning">{{ goal.theme }}</h6>
+                                <h6 class="card-category text-info">{{ goal.theme }}</h6>
                                 {% endif %}
                                 <h5 class="card-title">
                                     <a href="{% url 'blog:detail' goal.slug %}">{{ goal.title }}</a>
                                 </h5>
                                 <p class="card-description">
-                                    {{ goal.abstract|safe }} <br>
+                                    {{ goal.abstract|striptags|truncatechars:70 }} <br>
                                 </p>
                                 <hr>
                                 <div class="card-footer">
@@ -63,36 +60,7 @@
                 <h3>There are no posts yet <i class="fa fa-frown-o" aria-hidden="true"></i></h3>
                 {% endif %}    
             </div> <!-- End grid column -->
-            <div class="col-md-3">
-
-                <div class="card card-plain">       
-                    <div class="card-block" role="tab" id="priceRanger">
-                        <form role="search" class="form-inline" action="{% url 'blog:search' %}" method="get">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search" name="q" {% if 'search_query' %}value={{ search_query }}{% endif %}>
-                                <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                            </div>
-                        </form>
-                    </div>                        
-                </div>
-
-                <div class="card card-testimonial">
-                    <div class="card-icon">
-                        <i class="fa fa-quote-right" aria-hidden="true"></i>
-                    </div>
-                    <div class="card-block">
-                        <p class="card-description">
-                            {{ inspiration.quote }}
-                        </p>
-                        <div class="card-footer">
-                            <h4 class="card-title">{{ inspiration.author }}</h4>
-                            <h6 class="card-category">Inspiration #{{ inspiration.pk }}</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div> <!-- End row -->
-
         {% if is_paginated %}
             <br />
           <ul class="pagination" style="justify-content: center;">
@@ -117,8 +85,6 @@
         {% endif %}
     </div> <!-- End container -->
 </div> <!-- End section -->
-
-
 {% endblock content %}
 
 {% block footerclass %}section-gray{% endblock footerclass %}

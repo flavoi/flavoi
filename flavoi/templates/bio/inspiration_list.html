@@ -2,15 +2,45 @@
 
 {% block title %}inspirations{% endblock title %}
 
-{% block inspirations %}current{% endblock inspirations %}
+{% block navbarscrolls %}{% endblock navbarscrolls %}
 
 {% block content %}
-
-  {% for ins in inspirations %}
-    <blockquote>
-        {{ ins.quote }}
-      <footer>{{ ins.author }}</footer>
-    </blockquote>
-  {% endfor %}
-
+<div class="section section-gray">
+    <div class="container">
+        <br /><br />
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                {% if inspirations %}
+	                <div class="row">
+	                    {% for inspirations in ins_columns %}
+		                    <div class="col-md-4">
+		                    	{% for ins in inspirations %}
+			                        <div class="card">
+										<div class="card-block">
+									        <div class="author">
+									            <span>{{ ins.author }}</span>
+									        </div>
+									        <span class="category-social pull-right">
+									            <i class="fa fa-quote-right"></i>
+									        </span>
+									        <div class="clearfix"></div>
+									        <p class="card-description">
+									            "{{ ins.quote }}"
+									        </p>
+										</div>
+									</div>
+								{% endfor %}
+	                    	</div>	                    	
+	                    {% endfor %}
+	                </div>
+                {% else %}
+               		<h3>There are no posts yet <i class="fa fa-frown-o" aria-hidden="true"></i></h3>
+                {% endif %}    
+            </div> <!-- End grid column -->
+        </div> <!-- End row -->
+    </div> <!-- End container -->
+</div> <!-- End section -->
 {% endblock content %}
+
+{% block footerclass %}section-gray{% endblock footerclass %}
+

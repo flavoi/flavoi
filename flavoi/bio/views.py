@@ -46,6 +46,24 @@ class InspirationsView(ListView):
     def get_queryset(self):
         return Inspiration.objects.filter(bio__active=True)
 
+    def get_context_data(self, **kwargs):
+        context = super(InspirationsView, self).get_context_data(**kwargs)
+        NCOLUMNS = 3
+        i = 0
+        inspirations = self.get_queryset()
+        ins_columns = []
+        for k in range(0, NCOLUMNS):
+            ins_columns.append([])
+        print ins_columns
+        for ins in inspirations:
+            ins_columns[i].append(ins)
+            if i < NCOLUMNS - 1:
+                i += 1
+            elif i == NCOLUMNS - 1:
+                i = 0
+        context['ins_columns'] = ins_columns
+        return context
+
 
 # How to find me
 class ContactsView(ListView):

@@ -57,7 +57,7 @@ class Goal(TimeStampedFeature):
         Projects and achievements centered around a specific theme.
     """
     title = models.CharField(max_length=60)
-    abstract = RichTextField()
+    abstract = models.CharField(max_length=60)
     picture = models.ImageField(blank=True, upload_to='media/goals/')
     caption = models.CharField(max_length=60, blank=True)
     description = RichTextField()
