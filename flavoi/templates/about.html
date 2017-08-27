@@ -21,7 +21,7 @@
                           <img src="{{ profile.picture.url }}" alt="{{ profile.name }}">
                       </div>
                       <div class="name">
-                          <h4 class="title text-center">{{ profile.name|title }} {{ profile.surname|title }}<br /><small>{{ profile.title|strptags }}</small></h4>
+                          <h4 class="title text-center">{{ profile.name|title }} {{ profile.surname|title }}
                       </div>
                 </div>
               </div>
@@ -29,6 +29,7 @@
           </div>
           <div class="row">
               <div class="col-md-6 offset-md-3 text-center">
+
                   <p>{{ profile.description|striptags }}</p>
                   <br />
                   <a class="btn btn-outline-default btn-round" href="{% url 'blog:home' %}"><i class="fa fa-align-center" aria-hidden="true"></i> Blog</a>
