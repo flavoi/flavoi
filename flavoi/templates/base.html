@@ -63,19 +63,6 @@
       {% block content %}{% endblock content %}
   </div>
 
-  <!--
-    <div class="card card-plain">       
-        <div class="card-block" role="tab" id="priceRanger">
-            <form role="search" class="form-inline" action="{% url 'blog:search' %}" method="get">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" name="q" {% if 'search_query' %}value={{ search_query }}{% endif %}>
-                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                </div>
-            </form>
-        </div>                        
-    </div>
-  -->
-
   {% block footer %}
   <footer class="footer {% block footerclass %}footer-big{% endblock footerclass %}">
     <div class="text-center">
