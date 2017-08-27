@@ -1,8 +1,16 @@
-update 6 → version 3.1.2 → 19/08/2017
+update 6 → version 3.2.0 - 27/08/2017
+   - Introduced inspirations' page
+   - Updated navbar links with inspirations' page and search input
+   - Updated blogposts' colors
+   - Removed search box from blogposts' page
+   - Removed inspiration box from blogposts' page
+   - Fixed blogposts' title for online readers
+
+update 6 → version 3.1.2 - 19/08/2017
    - Introduced search box for blogpost titles 
-   - Introduced inspiration box in blogposts page
+   - Introduced inspiration box in blogposts' page
    - Updated navbar and themes colors
-   - Fixed navbar visuals in blogposts page
+   - Fixed navbar visuals in blogposts' page
 
 update 5 → version 3.0.6 - 17/08/2017
    - Introduced paper kit styles
