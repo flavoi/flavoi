@@ -53,9 +53,11 @@
                                         <img class="media-object" alt="64x64" src="{{ profile.picture.url }}">
                                     </div>
                                 </a>                         
-                                <h4 class="media-heading">{{ profile.name }} {{ profile.surname }}</h4>
-                                <h6 class="card-category">{{ profile.title }}</h6>
-                                <p>{{ profile.description|striptags }}</p>
+                                <div class="media-body">
+                                    <h4 class="media-heading">{{ profile.name }} {{ profile.surname }}</h4>
+                                    <h6 class="card-category">{{ profile.title }}</h6>
+                                    <p style="padding-right: 0px;">{{ profile.description|striptags }}</p>
+                                </div>
                              </div>
                             <div class="comments media-area">
                                 <h3 class="text-center">Comments</h3>
